@@ -1,0 +1,7 @@
+<!-- En templates/exito.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>¡Datos guardados exitosamente!</h2>
+    <p>Gracias por guardar los datos. Puedes volver a la <a href="{% url 'carga_datos' %}">página anterior</a>.</p>
+{% endblock %}

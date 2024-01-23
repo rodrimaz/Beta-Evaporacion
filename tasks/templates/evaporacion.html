@@ -1,0 +1,274 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<html>
+<head>
+    <title>Imagen con Número</title>
+    <style>
+        
+        #error-message-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 5px;
+            color: white;
+            display: none;
+        }
+        
+        .image-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .number-input {
+            position: absolute;
+            border: 1.5px solid black;
+            background-color: yellow; /* Fondo amarillo */
+            text-align: center;
+            width: 70px; /* Reducir el ancho del campo */
+            height: 20px; /* Reducir la altura del campo */
+            font-size: 12px; /* Reducir el tamaño de la fuente */
+            padding: 5px; /* Agregar espacio interno para mejorar la apariencia */
+        }
+        .number-input2 {
+            position: absolute;
+            border: 1.5px solid black;
+            background-color: yellow; /* Fondo amarillo */
+            text-align: center;
+            width: 130px; /* Reducir el ancho del campo */
+            height: 20px; /* Reducir la altura del campo */
+            font-size: 11px; /* Reducir el tamaño de la fuente */
+            padding: 5px; /* Agregar espacio interno para mejorar la apariencia */
+        }
+
+        .number-input::-webkit-inner-spin-button,
+        .number-input::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .number-input::-webkit-clear-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        .number-input2::-webkit-inner-spin-button,
+        .number-input2::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .number-input2::-webkit-clear-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .number-input3 {
+            position: absolute;
+            border: 1.5px solid black;
+            background-color: yellow; /* Fondo amarillo */
+            text-align: center;
+            width: 225px; /* Reducir el ancho del campo */
+            height: 20px; /* Reducir la altura del campo */
+            font-size: 11px; /* Reducir el tamaño de la fuente */
+            padding: 5px; /* Agregar espacio interno para mejorar la apariencia */
+        }
+
+        .number-input::-webkit-inner-spin-button,
+        .number-input::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .number-input::-webkit-clear-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        .number-input3::-webkit-inner-spin-button,
+        .number-input3::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .number-input3::-webkit-clear-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .number-input4 {
+            position: absolute;
+            border: 1.5px solid black;
+            background-color: yellow; /* Fondo amarillo */
+            text-align: center;
+            width: 85px; /* Reducir el ancho del campo */
+            height: 21px; /* Reducir la altura del campo */
+            font-size: 12px; /* Reducir el tamaño de la fuente */
+            padding: 5px; /* Agregar espacio interno para mejorar la apariencia */
+        }
+
+        .number-input::-webkit-inner-spin-button,
+        .number-input::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .number-input::-webkit-clear-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        .number-input4::-webkit-inner-spin-button,
+        .number-input4::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .number-input4::-webkit-clear-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .number-input5 {
+            position: absolute;
+            border: 1.5px solid black;
+            background-color: yellow; /* Fondo amarillo */
+            text-align: center;
+            width: 380px; /* Reducir el ancho del campo */
+            height: 50px; /* Reducir la altura del campo */
+            font-size: 12px; /* Reducir el tamaño de la fuente */
+            padding: 5px; /* Agregar espacio interno para mejorar la apariencia */
+        }
+
+        .number-input::-webkit-inner-spin-button,
+        .number-input::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .number-input::-webkit-clear-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        .number-input5::-webkit-inner-spin-button,
+        .number-input5::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .number-input5::-webkit-clear-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        button {
+            position: absolute;
+            border: 1.5px solid black;
+            background-color: rgb(223, 223, 214); /* Fondo amarillo */
+            text-align: center;
+            width: 195px; /* Reducir el ancho del campo */
+            height: 50px; /* Reducir la altura del campo */
+            font-size: 18px; /* Reducir el tamaño de la fuente */
+            padding: 5px; /* Agregar espacio interno para mejorar la apariencia */
+            margin-top: -53px;
+            margin-left: 950px;
+        }
+
+        button.exit-button {
+        position: absolute;
+        border: 1.5px solid black;
+        background-color: rgb(196, 38, 38);
+        text-align: center;
+        width: 195px;
+        height: 50px;
+        font-size: 15px;
+        padding: 5px;
+        margin-top: -53px;
+        margin-left: 1150px; 
+        }
+
+        /* Ajusta estas coordenadas según la posición que desees para cada campo */
+        #PT05 { top: 74px; left: 54px; }
+        #PT04 { top: 74px; left: 415px; }
+        #PT03 { top: 74px; left: 725px; }
+        #OTEYECTOR1 { top: 73px; left: 820px; }
+        #PT01PT02 { top: 74px; left: 965px; }
+        #OTEYECTOR2 { top: 32px; left: 820px; }
+        #PRESIONBO2101 { top: 174px; left: 1185px; }
+        #PRESIONOUTIC2103 { top: 383px; left: 1080px; }
+        #PRESIONINIC2104 { top: 383px; left: 1236px; }
+        #PRESIONOUTIC2104  { top: 412px; left: 1298px; }
+        #PRESIONOUTIC2101 { top: 495px; left: 966px; }
+        #PRESIONINIC2101 { top: 524px; left: 1107px; }
+        #CONDENSADO { top: 683px; left: 18px; }
+        #POTENCIAINSTA { top: 683Px; left: 268Px; }
+        #OTBO2101 { top: 153px; left: 1185px; }
+        #LCV01 { top: 371px; left: 800px; }
+        #CAUDALVL { top: 335px; left: 808px; }
+        #ST2EF { top: 240px; left: 643px; }
+        #DENSIDAD { top: 380px; left: 495px; }
+        #OBS { top: 652px; left: 525px; }
+        #VISCOSIDAD { top: 382px; left: 356px; }
+        #TEMPERATURA { top: 403px; left: 356px; }
+        #DENSIDADLAB { top: 425px; left: 356px; }
+        /* Agrega más estilos según sea necesario para otros campos */
+
+        /* Puedes agregar estilos adicionales para mejorar la apariencia según tus necesidades */
+    </style>
+</head>
+<body>
+    <div class="image-container">
+        <img src="{% static 'images/evaporacion.png' %}" alt="Imagen">
+        <form method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+            {% csrf_token %}
+            <input type="number" name="PT05" id="PT05" class="number-input" placeholder="PT05" step="any">
+            <input type="number" name="PT04" id="PT04" class="number-input" placeholder="PT04" step="any">
+            <input type="number" name="PT03" id="PT03" class="number-input" placeholder="PT03" step="any">
+            <input type="number" name="OTEYECTOR1" id="OTEYECTOR1" class="number-input2" placeholder="OT EYECTOR 1" step="any">
+            <input type="number" name="PT01PT02" id="PT01PT02" class="number-input" placeholder="PT01/PT02" step="any">
+            <input type="number" name="OTEYECTOR2" id="OTEYECTOR2" class="number-input2" placeholder="OT EYECTOR 2" step="any">
+            <input type="number" name="PRESIONBO2101" id="PRESIONBO2101" class="number-input2" placeholder="PRESION BO2101" step="any">
+            <input type="number" name="PRESIONOUTIC2103" id="PRESIONOUTIC2103" class="number-input2" placeholder="PRESION OUT IC2103" step="any">
+            <input type="number" name="PRESIONINIC2104" id="PRESIONINIC2104" class="number-input2" placeholder="PRESION IN IC2104" step="any">
+            <input type="number" name="PRESIONOUTIC2104" id="PRESIONOUTIC2104" class="number-input2" placeholder="PRESION OUT IC2104" step="any">
+            <input type="number" name="PRESIONOUTIC2101" id="PRESIONOUTIC2101" class="number-input2" placeholder="PRESION OUT IC2101" step="any">
+            <input type="number" name="PRESIONINIC2101" id="PRESIONINIC2101" class="number-input2" placeholder="PRESION IN IC2101" step="any">
+            <input type="number" name="CONDENSADO" id="CONDENSADO" class="number-input3" placeholder="CONDENSADO" step="any">
+            <input type="number" name="POTENCIAINSTA" id="POTENCIAINSTA" class="number-input3" placeholder="POTENCIA" step="any">
+            <input type="number" name="OTBO2101" id="OTBO2101" class="number-input4" placeholder="OT BO2101" step="any">
+            <input type="number" name="LCV01" id="LCV01" class="number-input4" placeholder="LCV01" step="any">
+            <input type="number" name="CAUDALVL" id="CAUDALVL" class="number-input4" placeholder="CAUDAL VL" step="any">
+            <input type="number" name="ST2EF" id="ST2EF" class="number-input4" placeholder="%ST 2° EF" step="any">
+            <input type="number" name="DENSIDAD" id="DENSIDAD" class="number-input4" placeholder="DENSIDAD" step="any">
+            <input type="text" name="OBS" id="OBS" class="number-input5" placeholder="Observaciones">
+            <input type="number" name="VISCOSIDAD" id="VISCOSIDAD" class="number-input2" placeholder="Viscosidad" step="any">
+            <input type="number" name="TEMPERATURA" id="TEMPERATURA" class="number-input2" placeholder="Temperatura" step="any">
+            <input type="number" name="DENSIDADLAB" id="DENSIDADLAB" class="number-input2" placeholder="Densidad LAB" step="any">
+            <button type="button" class="exit-button" onclick="window.location.href='{% url 'home' %}'">Salir sin cargar datos PLANTA PARADA</button>
+            <button type="submit">Guardar Datos</button>
+        </form>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var form = document.querySelector("form");
+    
+            form.addEventListener("submit", function (event) {
+                var numericInputs = form.querySelectorAll("input[type=number]");
+    
+                for (var i = 0; i < numericInputs.length; i++) {
+                    var input = numericInputs[i];
+                    
+                    // Excluye campos viscosidad, temperatura y densidadlab de la validación
+                    if (input.name !== "VISCOSIDAD" && input.name !== "TEMPERATURA" && input.name !== "DENSIDADLAB" && !input.value.trim()) {
+                        event.preventDefault();
+                        alert("Por favor, complete todos los campos numéricos obligatorios antes de guardar.");
+                        return;
+                    }
+                }
+            });
+        });
+    </script>
+    
+</body>
+</html>
+{% endblock %}

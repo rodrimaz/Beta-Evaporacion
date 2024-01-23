@@ -1,0 +1,11 @@
+{% extends 'base.html' %} {% block content %}
+
+<!-- templates/incidente_form.html -->
+<h2>Reportar un incidente</h2>
+<form method="post" action="">
+    {% csrf_token %}
+    
+    <button type="submit">Enviar</button>
+</form>
+
+{% endblock %}

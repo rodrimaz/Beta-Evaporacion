@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Django CRUD</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    
+    <script>
+      function abrirVentanaSiEsHoraPar() {
+            // Lógica para determinar si la hora actual es par
+            var currentTime = new Date();
+            var currentHour = currentTime.getHours();
+            var currentMinutes = currentTime.getMinutes();
+            
+            // Comprueba si la hora actual es un número par y los minutos están dentro del rango
+            if (currentHour % 2 === 0 && currentMinutes >= 0 && currentMinutes <= 4) {
+                // Cambia la URL a la que se redirigirá al usuario en la nueva ventana
+                var newWindowUrl = "{% url 'evaporacionpar' %}";
+                
+                // Abre una nueva ventana
+                window.open(newWindowUrl, '_blank');
+              } else {
+            // Muestra un mensaje en la consola si las condiciones no se cumplen
+                console.log("Horario incorrecto. No se abre la ventana.");
+                }
+
+            if (currentHour % 2 !== 0 && currentMinutes >= 0 && currentMinutes <= 4) {
+                // Cambia la URL a la que se redirigirá al usuario en la nueva ventana
+                var newWindowUrl = "{% url 'evaporacion' %}";
+                
+                // Abre una nueva ventana
+                window.open(newWindowUrl, '_blank');
+                }
+      }
+        setInterval(abrirVentanaSiEsHoraPar, 4 * 60 * 1000);
+    </script>
+    
+
+
+
+  </head>
+  <body>
+    {% include '_navbar.html' %}
+    
+    {% block content %}
+    
+    {% endblock %}
+  </body>
+</html>
