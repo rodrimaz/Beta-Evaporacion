@@ -147,4 +147,4 @@ EMAIL_HOST = 'smtp.office365.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'no_reply@bio4.com.ar'
-EMAIL_HOST_PASSWORD = 'Gksu294mn%'
+EMAIL_HOST_PASSWORD = '********'
