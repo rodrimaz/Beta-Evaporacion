@@ -252,14 +252,13 @@
         #PRESIONSALIDA  { top: 343px; left: 1320px; }
         #PRESIONIC701 { top: 603px; left: 1212px; }
         #CONDENSADO { top: 683px; left: 20px; }
-        #POTENCIAINSTA { top: 683Px; left: 272Px; }
+        /* #POTENCIAINSTA { top: 683Px; left: 272Px; } */
         #CAUDALVL { top: 341px; left: 800px; }
         #ST2EF { top: 240px; left: 643px; }
         #DENSIDAD { top: 380px; left: 495px; }
         #OBS { top: 652px; left: 520px; }
-        /* Agrega más estilos según sea necesario para otros campos */
+        #LCV01 { top: 371px; left: 800px; }
 
-        /* Puedes agregar estilos adicionales para mejorar la apariencia según tus necesidades */
     </style>
 </head>
 <body>
@@ -279,35 +278,86 @@
             <input type="number" name="PRESIONSALIDA" id="PRESIONSALIDA" class="number-input6" placeholder="PRESION SALIDA" step="any">
             <input type="number" name="PRESIONIC701" id="PRESIONIC701" class="number-input7" placeholder="PRESION SALIDA IC701 (bar)" step="any">
             <input type="number" name="CONDENSADO" id="CONDENSADO" class="number-input3" placeholder="CONDENSADO" step="any">
-            <input type="number" name="POTENCIAINSTA" id="POTENCIAINSTA" class="number-input3" placeholder="POTENCIA" step="any">
+            <!-- <input type="number" name="POTENCIAINSTA" id="POTENCIAINSTA" class="number-input3" placeholder="POTENCIA" step="any"> -->
+            <input type="number" name="LCV01" id="LCV01" class="number-input4" placeholder="LCV01" step="any">
             <input type="number" name="CAUDALVL" id="CAUDALVL" class="number-input4" placeholder="CAUDAL VL" step="any">
             <input type="number" name="ST2EF" id="ST2EF" class="number-input4" placeholder="%ST 2° EF" step="any">
             <input type="number" name="DENSIDAD" id="DENSIDAD" class="number-input4" placeholder="DENSIDAD" step="any">
             <input type="text" name="OBS" id="OBS" class="number-input5" placeholder="Observaciones" step="any">
-            
-            <!-- Agrega más campos de entrada según sea necesario -->
             <button type="button" class="exit-button" onclick="window.location.href='{% url 'home' %}'">Salir sin cargar datos PLANTA PARADA</button>
             <button type="submit">Guardar</button>
         </form>
     </div>
+
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             var form = document.querySelector("form");
+            var numericInputs = form.querySelectorAll("input[type=number]");
+            var currentHour = new Date().getHours();
+            var fieldsToDisable = ["PRESIONIC701", "PRESIONSALIDA", "PRESIONINGRESO"];
+            var horaExcepcion = 2
+            // Deshabilitar campos si la hora es igual a 15
+            if (currentHour === horaExcepcion) {
+                for (var i = 0; i < fieldsToDisable.length; i++) {
+                    var fieldName = fieldsToDisable[i];
+                    var input = form.querySelector("input[name=" + fieldName + "]");
+                    if (input) {
+                        input.disabled = true;
+                        input.style.backgroundColor = "#CCCCCC"; // Cambiar el color de fondo a gris
+                    }
+                }
+            }
     
             form.addEventListener("submit", function (event) {
-                var numericInputs = form.querySelectorAll("input[type=number]");
-    
+                // Verificar campos numericos obligatorios
                 for (var i = 0; i < numericInputs.length; i++) {
                     var input = numericInputs[i];
-                    if (!input.value.trim()) {
-                        event.preventDefault();
-                        alert("Por favor, complete todos los campos numéricos antes de guardar.");
-                        return;
+                    // Verificar si el campo no está deshabilitado y está vacío
+                    if (currentHour === horaExcepcion) {
+                        if (!input.value.trim() && fieldsToDisable.indexOf(input.name) === -1) {
+                            event.preventDefault();
+                            alert("Complete todos los campos numéricos antes de guardar.");
+                            return;
+                        }
+                    } else {
+                        if (!input.value.trim()) {
+                            event.preventDefault();
+                            alert("Por favor, complete todos los campos numéricos antes de guardar.");
+                            return;
+                        }
                     }
                 }
             });
+    
+            // Manejar el evento de cierre de ventana
+            function confirmExit(event) {
+                var formInputs = form.querySelectorAll("input[type=number]");
+                var allFieldsComplete = true;
+    
+                // Verificar campos numericos obligatorios
+                for (var i = 0; i < formInputs.length; i++) {
+                    var input = formInputs[i];
+                    if (!input.value.trim() && fieldsToDisable.indexOf(input.name) === -1) {
+                        allFieldsComplete = false;
+                        break;
+                    }
+                }
+    
+                // Mostrar mensaje de confirmación si no todos los campos obligatorios están completos
+                if (!allFieldsComplete) {
+                    var confirmation = confirm("¿Estás seguro de que deseas salir? Los cambios no guardados se perderán.");
+                    if (!confirmation) {
+                        event.preventDefault();
+                    }
+                }
+            }
+    
+            // Agregar el evento de cierre de ventana
+            window.addEventListener("beforeunload", confirmExit);
         });
     </script>
+
 </body>
 </html>
 {% endblock %}

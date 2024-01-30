@@ -117,6 +117,7 @@ def evaporacionpar(request):
         PRESIONINGRESO = request.POST.get('PRESIONINGRESO', 0)
         PRESIONSALIDA = request.POST.get('PRESIONSALIDA', 0)
         PRESIONIC701 = request.POST.get('PRESIONIC701', 0)
+        LCV01 = request.POST.get('LCV01', 0)
         # Crear una instancia del modelo Evaporacion con los valores del formulario
         evaporacion = Evaporacion(
             
@@ -135,7 +136,7 @@ def evaporacionpar(request):
             potencia_sepevap=float(POTENCIAINSTA),
             totalizador_condensado=float(CONDENSADO),
             filetes_FERM=0,
-            OT_vva_traspaso_ef1_a_ef3=0,
+            OT_vva_traspaso_ef1_a_ef3=float(LCV01),
             viscosidad=0,
             temperatura=0,
             densidad_LAB=0,
