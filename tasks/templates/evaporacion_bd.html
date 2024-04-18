@@ -1,0 +1,127 @@
+{% extends 'base.html' %} {% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Evaporaciones</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center; /* Centrar el texto */
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de Evaporaciones</h1>
+
+    <form method="GET" action="">
+        <label for="operario">Buscar por operario:</label>
+        <input type="text" id="operario" name="operario" value="{{ request.GET.operario }}">
+        <button type="submit">Buscar</button>
+    </form>
+
+    <form method="GET" action="">
+        <label for="fecha">Buscar por la fecha:     </label>
+        <input type="date" id="fecha" name="fecha" value="{{ request.GET.fecha }}">
+        <button type="submit">Buscar</button>
+    </form>
+
+    <form id="delete-form" method="POST" action="{% url 'delete_evaporacion' %}">
+        {% csrf_token %}
+        <button type="submit">Eliminar seleccionados</button>
+        <table>
+            <thead>
+                <tr>
+                    <th></th> <!-- Casilla de verificación -->
+                    <th>Fecha</th>
+                    <th>Operario</th>
+                    <th>Caudal_vl</th>
+                    <th>PT01_PT02</th>
+                    <th>PT03</th>
+                    <th>PT04</th>
+                    <th>PT05</th>
+                    <th>ST_EFECTO_2_SALIDA</th>
+                    <th>Densidad</th>
+                    <th>Observaciones</th>
+                    <th>OT_EYECTOR_1</th>
+                    <th>OT_EYECTOR_2</th>
+                    <th>Potencia_sepevap</th>
+                    <th>Totalizador_condensado</th>
+                    <th>Filetes_FERM</th>
+                    <th>OT_vva_traspaso_ef1_a_ef3</th>
+                    <th>Viscosidad</th>
+                    <th>Temperatura</th>
+                    <th>Densidad_LAB</th>
+                    <th>Nivel_tk_condensado</th>
+                    <th>OT_BO2101</th>
+                    <th>Presion_BO2101</th>
+                    <th>Presion_ingreso_IC2101</th>
+                    <th>Presion_egreso_IC2101_ingreso_IC2103</th>
+                    <th>Presion_egreso_IC2103</th>
+                    <th>Presion_ingreso_IC2104</th>
+                    <th>Presion_egreso_IC2104</th>
+                    <th>T_ingreso_agua_IC701</th>
+                    <th>T_salida_agua_IC701</th>
+                    <th>Presion_ingreso_agua_IC701</th>
+                    <th>Presion_salida_agua_IC701</th>
+                    <th>Presion_salida_vahos_IC701</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for evaporacion in evaporaciones %}
+                <tr>
+                    <td><input type="checkbox" name="evaporacion_id" value="{{ evaporacion.Id_evaporacion }}"></td>
+                    <td>{{ evaporacion.fecha }}</td>
+                    <td>{{ evaporacion.operario }}</td>
+                    <td>{{ evaporacion.caudal_vl }}</td>
+                    <td>{{ evaporacion.PT01_PT02 }}</td>
+                    <td>{{ evaporacion.PT03 }}</td>
+                    <td>{{ evaporacion.PT04 }}</td>
+                    <td>{{ evaporacion.PT05 }}</td>
+                    <td>{{ evaporacion.ST_EFECTO_2_SALIDA }}</td>
+                    <td>{{ evaporacion.densidad }}</td>
+                    <td>{{ evaporacion.observaciones }}</td>
+                    <td>{{ evaporacion.OT_EYECTOR_1 }}</td>
+                    <td>{{ evaporacion.OT_EYECTOR_2 }}</td>
+                    <td>{{ evaporacion.potencia_sepevap }}</td>
+                    <td>{{ evaporacion.totalizador_condensado }}</td>
+                    <td>{{ evaporacion.filetes_FERM }}</td>
+                    <td>{{ evaporacion.OT_vva_traspaso_ef1_a_ef3 }}</td>
+                    <td>{{ evaporacion.viscosidad }}</td>
+                    <td>{{ evaporacion.temperatura }}</td>
+                    <td>{{ evaporacion.densidad_LAB }}</td>
+                    <td>{{ evaporacion.nivel_tk_condensado }}</td>
+                    <td>{{ evaporacion.OT_BO2101 }}</td>
+                    <td>{{ evaporacion.presion_BO2101 }}</td>
+                    <td>{{ evaporacion.presion_ingreso_IC2101 }}</td>
+                    <td>{{ evaporacion.presion_egreso_IC2101_ingreso_IC2103 }}</td>
+                    <td>{{ evaporacion.presion_egreso_IC2103 }}</td>
+                    <td>{{ evaporacion.presion_ingreso_IC2104 }}</td>
+                    <td>{{ evaporacion.presion_egreso_IC2104 }}</td>
+                    <td>{{ evaporacion.T_ingreso_agua_IC701 }}</td>
+                    <td>{{ evaporacion.T_salida_agua_IC701 }}</td>
+                    <td>{{ evaporacion.presion_ingreso_agua_IC701 }}</td>
+                    <td>{{ evaporacion.presion_salida_agua_IC701 }}</td>
+                    <td>{{ evaporacion.presion_salida_vahos_IC701 }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </form>
+
+</body>
+</html>
+
+
+
+{% endblock %}

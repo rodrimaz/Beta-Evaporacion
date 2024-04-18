@@ -6,4 +6,8 @@ from django import forms
 class evaporacionForm(forms.ModelForm):
     class Meta:
         model = Evaporacion
-        exclude = ['Id_evaporacion', 'fecha', 'operario']
+        exclude = '__all__'
+        widgets = {
+            'fecha': forms.DateInput(attrs={'type': 'date'}),
+            # Añade otros widgets si es necesario
+        }

@@ -197,6 +197,81 @@ def signup(request):
 def create_task(request):
     return render(request, 'carga_datos.html')
 
+@login_required
+def BD(request):
+    return render(request, 'BD.html')
+
+@login_required
+def evaporacion_bd(request):
+    return render(request, 'evaporacion_bd.html')
+
+
+
+@login_required
+def evaporacion_bd(request):
+    evaporaciones = Evaporacion.objects.order_by('-fecha')  # Ordena por fecha de más reciente a más antigua
+
+    # Filtrar por usuario si se proporciona el parámetro en la URL
+    operario = request.GET.get('operario')
+    if operario:
+        evaporaciones = evaporaciones.filter(operario__icontains=operario)
+
+    # Filtrar por fecha si se proporciona el parámetro en la URL
+    fecha = request.GET.get('fecha')
+    if fecha:
+        evaporaciones = evaporaciones.filter(fecha__contains=fecha)
+
+    return render(request, 'evaporacion_bd.html', {'evaporaciones': evaporaciones})
+
+@login_required
+def evaporacion_bd2(request):
+    evaporaciones = Evaporacion.objects.order_by('-fecha')  # Ordena por fecha de más reciente a más antigua
+
+    # Filtrar por usuario si se proporciona el parámetro en la URL
+    operario = request.GET.get('operario')
+    if operario:
+        evaporaciones = evaporaciones.filter(operario__icontains=operario)
+
+    # Filtrar por fecha si se proporciona el parámetro en la URL
+    fecha = request.GET.get('fecha')
+    if fecha:
+        evaporaciones = evaporaciones.filter(fecha__contains=fecha)
+
+    return render(request, 'evaporacion_bd2.html', {'evaporaciones': evaporaciones})
+@login_required
+
+def editar_evaporacion(request, id_evaporacion):
+    evaporacion = get_object_or_404(Evaporacion, Id_evaporacion=id_evaporacion)
+    
+    if request.method == 'POST':
+        form = evaporacionForm(request.POST, instance=evaporacion)
+        if form.is_valid():
+            form.save()
+            return redirect('evaporacion_bd2')
+    else:
+        form = evaporacionForm(instance=evaporacion)
+    
+    return render(request, 'editar_evaporacion.html', {'form': form, 'evaporacion': evaporacion})
+
+@login_required
+def delete_evaporacion(request):
+    if request.method == 'POST':
+        evaporacion_ids = request.POST.getlist('evaporacion_id')
+        # Eliminar las evaporaciones seleccionadas
+        Evaporacion.objects.filter(Id_evaporacion__in=evaporacion_ids).delete()
+    return redirect('evaporacion_bd2')
+
+
+
+
+
+
+
+
+
+
+
+
 
 def home(request):
     return render(request, 'home.html')

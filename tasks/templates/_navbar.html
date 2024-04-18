@@ -31,9 +31,15 @@
           </li>
           <li class="nav-item">
             {% if user.is_superuser %}
+              <a href="/BD" class="nav-link">BD</a>
+            {% endif %}
+          </li>
+          <li class="nav-item">
+            {% if user.is_superuser %}
               <a href="/admin" class="nav-link">Admin</a>
             {% endif %}
           </li>
+
           <li class="nav-item">
             <a class="nav-link" href="/logout">Logout</a>
           </li>

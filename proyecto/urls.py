@@ -28,4 +28,10 @@ urlpatterns = [
     path('exito/', views.exito, name='exito'),
     path('evaporacion/', views.evaporacion, name='evaporacion'),
     path('evaporacionpar/', views.evaporacionpar, name='evaporacionpar'),
+    path('BD/', views.BD, name='BD'),
+    path('evaporacion_bd/', views.evaporacion_bd, name='evaporacion_bd'),
+    path('evaporacion_bd2/', views.evaporacion_bd2, name='evaporacion_bd2'),
+    path('delete_evaporacion/', views.delete_evaporacion, name='delete_evaporacion'),
+    path('editar_evaporacion/<int:id_evaporacion>/', views.editar_evaporacion, name='editar_evaporacion'),
+    
 ]

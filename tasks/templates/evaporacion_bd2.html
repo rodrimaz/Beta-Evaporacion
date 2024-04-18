@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Evaporaciones</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center; /* Centrar el texto */
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* Flexbox para alinear los formularios y el botón */
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .form-row form {
+            flex: 1; /* Ocupar el espacio disponible */
+            margin-right: 10px; /* Espacio entre los formularios */
+        }
+    </style>
+    <script>
+        function confirmDelete() {
+            const checkboxes = document.querySelectorAll('input[name="evaporacion_id"]:checked');
+            const count = checkboxes.length;
+
+            if (count > 0) {
+                const confirmMsg = `¿Estás seguro de querer eliminar ${count} elementos?`;
+                return confirm(confirmMsg);
+            } else {
+                alert('Por favor, selecciona al menos un elemento para eliminar.');
+                return false;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Tabla datos evaporación</h1>
+
+
+        {% csrf_token %}
+        <div class="form-row">
+            <form method="GET" action="">
+                <label for="operario">Buscar por operario:</label>
+                <input type="text" id="operario" name="operario" value="{{ request.GET.operario }}">
+                <button type="submit">Buscar</button>
+            </form>
+
+            <form method="GET" action="">
+                <label for="fecha">Buscar por la fecha:</label>
+                <input type="date" id="fecha" name="fecha" value="{{ request.GET.fecha }}">
+                <button type="submit">Buscar</button>
+            </form>
+
+            <form id="delete-form" method="POST" action="{% url 'delete_evaporacion' %}">
+                {% csrf_token %}
+                <button type="submit" onclick="return confirmDelete()">Eliminar seleccionados</button>
+
+        </div>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Eliminar</th> <!-- Casilla de verificación -->
+                <th>Editar</th>
+                <th>ID</th>
+                <th>Fecha</th>
+                <th>Operario</th>
+                <th>Caudal VL</th>
+                <th>PT01_PT02</th>
+                <th>PT03</th>
+                <th>PT04</th>
+                <th>PT05</th>
+                <th>ST_EFECTO_2_SALIDA</th>
+                <th>Densidad</th>
+                <th>Observaciones</th>
+                <th>OT_EYECTOR_1</th>
+                <th>OT_EYECTOR_2</th>
+                <th>Potencia Sepevap</th>
+                <th>Totalizador Condensado</th>
+                <th>Filetes FERM</th>
+                <th>OT_vva_traspaso_ef1_a_ef3</th>
+                <th>Viscosidad</th>
+                <th>Temperatura</th>
+                <th>Densidad LAB</th>
+                <th>Nivel TK Condensado</th>
+                <th>OT_BO2101</th>
+                <th>Presion BO2101</th>
+                <th>Presion Ingreso IC2101</th>
+                <th>Presion Egreso IC2101 Ingreso IC2103</th>
+                <th>Presion Egreso IC2103</th>
+                <th>Presion Ingreso IC2104</th>
+                <th>Presion Egreso IC2104</th>
+                <th>T Ingreso Agua IC701</th>
+                <th>T Salida Agua IC701</th>
+                <th>Presion Ingreso Agua IC701</th>
+                <th>Presion Salida Agua IC701</th>
+                <th>Presion Salida Vahos IC701</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for evaporacion in evaporaciones %}
+            <tr>
+                <td><input type="checkbox" name="evaporacion_id" value="{{ evaporacion.Id_evaporacion }}"></td>
+                <td>
+                    <a href="{% url 'editar_evaporacion' evaporacion.Id_evaporacion %}">Editar</a>
+                </td>
+                <td>{{ evaporacion.Id_evaporacion }}</td>
+                <td>{{ evaporacion.fecha }}</td>
+                <td>{{ evaporacion.operario }}</td>
+                <td>{{ evaporacion.caudal_vl }}</td>
+                <td>{{ evaporacion.PT01_PT02 }}</td>
+                <td>{{ evaporacion.PT03 }}</td>
+                <td>{{ evaporacion.PT04 }}</td>
+                <td>{{ evaporacion.PT05 }}</td>
+                <td>{{ evaporacion.ST_EFECTO_2_SALIDA }}</td>
+                <td>{{ evaporacion.densidad }}</td>
+                <td>{{ evaporacion.observaciones }}</td>
+                <td>{{ evaporacion.OT_EYECTOR_1 }}</td>
+                <td>{{ evaporacion.OT_EYECTOR_2 }}</td>
+                <td>{{ evaporacion.potencia_sepevap }}</td>
+                <td>{{ evaporacion.totalizador_condensado }}</td>
+                <td>{{ evaporacion.filetes_FERM }}</td>
+                <td>{{ evaporacion.OT_vva_traspaso_ef1_a_ef3 }}</td>
+                <td>{{ evaporacion.viscosidad }}</td>
+                <td>{{ evaporacion.temperatura }}</td>
+                <td>{{ evaporacion.densidad_LAB }}</td>
+                <td>{{ evaporacion.nivel_tk_condensado }}</td>
+                <td>{{ evaporacion.OT_BO2101 }}</td>
+                <td>{{ evaporacion.presion_BO2101 }}</td>
+                <td>{{ evaporacion.presion_ingreso_IC2101 }}</td>
+                <td>{{ evaporacion.presion_egreso_IC2101_ingreso_IC2103 }}</td>
+                <td>{{ evaporacion.presion_egreso_IC2103 }}</td>
+                <td>{{ evaporacion.presion_ingreso_IC2104 }}</td>
+                <td>{{ evaporacion.presion_egreso_IC2104 }}</td>
+                <td>{{ evaporacion.T_ingreso_agua_IC701 }}</td>
+                <td>{{ evaporacion.T_salida_agua_IC701 }}</td>
+                <td>{{ evaporacion.presion_ingreso_agua_IC701 }}</td>
+                <td>{{ evaporacion.presion_salida_agua_IC701 }}</td>
+                <td>{{ evaporacion.presion_salida_vahos_IC701 }}</td>
+              
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+
+{% endblock %}
