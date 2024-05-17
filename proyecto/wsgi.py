@@ -8,9 +8,15 @@ https://docs.djangoproject.com/en/3.0/howto/deployment/wsgi/
 """
 
 import os
+import sys
+# add the hellodjango project path into the sys.path
+sys.path.append(r'C:\inetpub\wwwroot\Beta-Evaporacion\proyecto')
 
-from django.core.wsgi import get_wsgi_application
+# add the virtualenv site-packages path to the sys.path
+sys.path.append(r'C:\Python311\Lib\site-packages')
 
+# poiting to the project settings
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'proyecto.settings')
 
+from django.core.wsgi import get_wsgi_application
 application = get_wsgi_application()

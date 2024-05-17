@@ -26,7 +26,7 @@ SECRET_KEY = '9r=$*uz1tm_b0lqw2_8qe8vl&za(wij$2v+%h^rqfh5r0)w)3d'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.113.23','127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'tasks',
     'bootstrap4',
-    
+
     
 
 ]
@@ -83,13 +83,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 DATABASES = {
     'default': {
         'ENGINE': 'sql_server.pyodbc',
-        'NAME': 't',
+        'NAME': 'TEST',
         'USER': 'sa',
-        'PASSWORD': '230491',
-        'HOST': 'DESKTOP-V5N4P0G\\SQLEXPRESS',  # Puede ser una dirección IP o un nombre de host
+        'PASSWORD': 'bioetanol4$',
+        'HOST': 'SA0001\SQLBIO4',  # Puede ser una dirección IP o un nombre de host
         'PORT': '',  # El puerto de tu base de datos (por defecto es 1433 para SQL Server)
         'OPTIONS': {
-            'driver': 'ODBC Driver 13 for SQL Server',  # Driver ODBC para SQL Server
+            'driver': 'SQL Server Native Client 11.0',  # Driver ODBC para SQL Server 
+            #'driver': 'ODBC Driver 13 for SQL Server',  # Driver ODBC para SQL Server
         },
     }
 }
@@ -136,7 +137,7 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/staticfiles/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Ruta a un directorio en el sistema de archivos donde se recopilarán los archivos estáticos
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'tasks', 'static'),
