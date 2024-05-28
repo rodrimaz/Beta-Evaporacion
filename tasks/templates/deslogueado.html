@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mi Vista Protegida</title>
+    <!-- Incluye aquí los enlaces a tus hojas de estilo, scripts, etc. -->
+</head>
+<body>
+    <h1>Bienvenido a Mi Vista Protegida</h1>
+    <p>Hola, {{ user.username }}! Has accedido a una vista que requiere autenticación.</p>
+
+    <!-- Contenido de la página -->
+    <p>Esta es una página protegida. Solo los usuarios autenticados pueden verla.</p>
+
+    <!-- Añade enlaces a otras partes de tu aplicación si es necesario -->
+    <p><a href="{% url 'home' %}">Ir a la página principal</a></p>
+    <p><a href="{% url 'logout' %}">Cerrar sesión</a></p>
+
+    <!-- Incluye aquí cualquier otro contenido específico de tu aplicación -->
+</body>
+</html>

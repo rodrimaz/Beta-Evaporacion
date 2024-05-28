@@ -28,4 +28,5 @@ urlpatterns = [
     path('exito/', views.exito, name='exito'),
     path('evaporacion/', views.evaporacion, name='evaporacion'),
     path('evaporacionpar/', views.evaporacionpar, name='evaporacionpar'),
+    path('protected/', views.MyView.as_view(), name='protected'),
 ]
