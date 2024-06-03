@@ -16,7 +16,7 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Duración de la sesión en segundos 
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -88,16 +88,17 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 DATABASES = {
     'default': {
         'ENGINE': 'sql_server.pyodbc',
-        'NAME': 'h',
+        'NAME': 'TEST',
         'USER': 'sa',
-        'PASSWORD': '230491',
-        'HOST': 'DESKTOP-V5N4P0G\\SQLEXPRESS',  # Puede ser una dirección IP o un nombre de host
+        'PASSWORD': 'bioetanol4$',
+        'HOST': 'SA0001\SQLBIO4',  # Puede ser una dirección IP o un nombre de host
         'PORT': '',  # El puerto de tu base de datos (por defecto es 1433 para SQL Server)
         'OPTIONS': {
-            'driver': 'ODBC Driver 13 for SQL Server',  # Driver ODBC para SQL Server
+            'driver': 'SQL Server Native Client 11.0',  # Driver ODBC para SQL Server
         },
     }
 }
+
 
 
 
