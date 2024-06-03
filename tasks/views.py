@@ -20,10 +20,15 @@ from django.db.models import Q
 from django.http import Http404
 from django.shortcuts import render, redirect
 from .models import Evaporacion
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import TemplateView
+
+class MyView(LoginRequiredMixin, TemplateView):
+    template_name = 'deslogueado.html'
+    login_url = 'signin'
 
 
-
-@login_required
+@login_required(login_url='signin')
 def evaporacion(request):
     if request.method == 'POST':
         hora = timezone.now()
@@ -94,7 +99,7 @@ def evaporacion(request):
 
     return render(request, 'evaporacion.html')  # Ajusta el nombre del template según tu estructura
 
-@login_required
+@login_required(login_url='signin')
 def evaporacionpar(request):
     if request.method == 'POST':
         hora = timezone.now()
@@ -193,7 +198,7 @@ def signup(request):
 
 
 
-@login_required
+@login_required(login_url='signin')
 def create_task(request):
     return render(request, 'carga_datos.html')
 
@@ -202,7 +207,7 @@ def home(request):
     return render(request, 'home.html')
 
 
-@login_required
+@login_required(login_url='signin')
 def signout(request):
     logout(request)
     return redirect('home')
