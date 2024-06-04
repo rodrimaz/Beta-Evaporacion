@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Confirmar Eliminación</h2>
+  <p>¿Estás seguro que deseas eliminar esta evaporación?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Eliminar</button>
+    <a href="{% url 'evaporacion_list' %}">Cancelar</a>
+  </form>
+{% endblock %}

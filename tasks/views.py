@@ -22,6 +22,41 @@ from django.shortcuts import render, redirect
 from .models import Evaporacion
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
+from django.utils.decorators import method_decorator
+
+
+@login_required(login_url='signin')
+def BD(request):
+    evaporaciones = Evaporacion.objects.all().order_by('-fecha')
+    return render(request, 'evaporacion_list.html', {'evaporaciones': evaporaciones})
+
+@method_decorator(login_required, name='dispatch')
+class EvaporacionListView(ListView):
+    model = Evaporacion
+    template_name = 'evaporacion_list.html'
+    context_object_name = 'evaporaciones'
+    ordering = ['-fecha']
+
+@method_decorator(login_required, name='dispatch')
+class EvaporacionUpdateView(UpdateView):
+    model = Evaporacion
+    template_name = 'evaporacion_form.html'
+    fields = [
+        'caudal_vl', 'PT01_PT02', 'PT03', 'PT04', 'PT05', 'ST_EFECTO_2_SALIDA', 'densidad', 'observaciones',
+        'OT_EYECTOR_1', 'OT_EYECTOR_2', 'potencia_sepevap', 'totalizador_condensado', 'filetes_FERM',
+        'OT_vva_traspaso_ef1_a_ef3', 'viscosidad', 'temperatura', 'densidad_LAB', 'nivel_tk_condensado',
+        'OT_BO2101', 'presion_BO2101', 'presion_ingreso_IC2101', 'presion_egreso_IC2101_ingreso_IC2103',
+        'presion_egreso_IC2103', 'presion_ingreso_IC2104', 'presion_egreso_IC2104', 'T_ingreso_agua_IC701',
+        'T_salida_agua_IC701', 'presion_ingreso_agua_IC701', 'presion_salida_agua_IC701', 'presion_salida_vahos_IC701'
+    ]
+    success_url = reverse_lazy('evaporacion_list')
+
+@method_decorator(login_required, name='dispatch')
+class EvaporacionDeleteView(DeleteView):
+    model = Evaporacion
+    template_name = 'evaporacion_confirm_delete.html'
+    success_url = reverse_lazy('evaporacion_list')
+
 
 class MyView(LoginRequiredMixin, TemplateView):
     template_name = 'deslogueado.html'
@@ -201,6 +236,10 @@ def signup(request):
 @login_required(login_url='signin')
 def create_task(request):
     return render(request, 'carga_datos.html')
+
+@login_required(login_url='signin')
+def BD(request):
+    return render(request, 'BD.html')
 
 
 def home(request):

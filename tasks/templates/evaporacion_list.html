@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Evaporaciones</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de Evaporaciones</h1>
+    <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Fecha</th>
+            <th>Operario</th>
+            <th>Caudal VL</th>
+            <th>PT01_PT02</th>
+            <th>PT03</th>
+            <th>PT04</th>
+            <th>PT05</th>
+            <th>ST Efecto 2 Salida</th>
+            <th>Densidad</th>
+            <th>Observaciones</th>
+            <th>OT Eyector 1</th>
+            <th>OT Eyector 2</th>
+            <th>Potencia SepEvap</th>
+            <th>Totalizador Condensado</th>
+            <th>Filetes FERM</th>
+            <th>OT VVA Traspaso Ef1 a Ef3</th>
+            <th>Viscosidad</th>
+            <th>Temperatura</th>
+            <th>Densidad LAB</th>
+            <th>Nivel TK Condensado</th>
+            <th>OT BO2101</th>
+            <th>Presión BO2101</th>
+            <th>Presión Ingreso IC2101</th>
+            <th>Presión Egreso IC2101 Ingreso IC2103</th>
+            <th>Presión Egreso IC2103</th>
+            <th>Presión Ingreso IC2104</th>
+            <th>Presión Egreso IC2104</th>
+            <th>T Ingreso Agua IC701</th>
+            <th>T Salida Agua IC701</th>
+            <th>Presión Ingreso Agua IC701</th>
+            <th>Presión Salida Agua IC701</th>
+            <th>Presión Salida Vahos IC701</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for evaporacion in evaporaciones %}
+          <tr>
+            <td>{{ evaporacion.Id_evaporacion }}</td>
+            <td>{{ evaporacion.fecha }}</td>
+            <td>{{ evaporacion.operario }}</td>
+            <td>{{ evaporacion.caudal_vl }}</td>
+            <td>{{ evaporacion.PT01_PT02 }}</td>
+            <td>{{ evaporacion.PT03 }}</td>
+            <td>{{ evaporacion.PT04 }}</td>
+            <td>{{ evaporacion.PT05 }}</td>
+            <td>{{ evaporacion.ST_EFECTO_2_SALIDA }}</td>
+            <td>{{ evaporacion.densidad }}</td>
+            <td>{{ evaporacion.observaciones }}</td>
+            <td>{{ evaporacion.OT_EYECTOR_1 }}</td>
+            <td>{{ evaporacion.OT_EYECTOR_2 }}</td>
+            <td>{{ evaporacion.potencia_sepevap }}</td>
+            <td>{{ evaporacion.totalizador_condensado }}</td>
+            <td>{{ evaporacion.filetes_FERM }}</td>
+            <td>{{ evaporacion.OT_vva_traspaso_ef1_a_ef3 }}</td>
+            <td>{{ evaporacion.viscosidad }}</td>
+            <td>{{ evaporacion.temperatura }}</td>
+            <td>{{ evaporacion.densidad_LAB }}</td>
+            <td>{{ evaporacion.nivel_tk_condensado }}</td>
+            <td>{{ evaporacion.OT_BO2101 }}</td>
+            <td>{{ evaporacion.presion_BO2101 }}</td>
+            <td>{{ evaporacion.presion_ingreso_IC2101 }}</td>
+            <td>{{ evaporacion.presion_egreso_IC2101_ingreso_IC2103 }}</td>
+            <td>{{ evaporacion.presion_egreso_IC2103 }}</td>
+            <td>{{ evaporacion.presion_ingreso_IC2104 }}</td>
+            <td>{{ evaporacion.presion_egreso_IC2104 }}</td>
+            <td>{{ evaporacion.T_ingreso_agua_IC701 }}</td>
+            <td>{{ evaporacion.T_salida_agua_IC701 }}</td>
+            <td>{{ evaporacion.presion_ingreso_agua_IC701 }}</td>
+            <td>{{ evaporacion.presion_salida_agua_IC701 }}</td>
+            <td>{{ evaporacion.presion_salida_vahos_IC701 }}</td>
+            <td>
+              <a href="{% url 'evaporacion_edit' evaporacion.pk %}">Editar</a>
+              <a href="{% url 'evaporacion_delete' evaporacion.pk %}">Eliminar</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+{% endblock %}
+
+
+
+
