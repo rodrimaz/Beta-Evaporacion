@@ -29,11 +29,17 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['192.168.113.23','127.0.0.1', 'localhost']
 
-# Deslogueo por inactividad en segundos (600 = 10 minutos)
+# Deslogueo por inactividad en segundos (60 = 1 minuto)
 
-SESSION_COOKIE_AGE = 600
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+SESSION_COOKIE_AGE = 14400  # 4 horas
+SESSION_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SECURE = True  
+CSRF_COOKIE_SECURE = True     
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+X_FRAME_OPTIONS = 'DENY'
 
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
