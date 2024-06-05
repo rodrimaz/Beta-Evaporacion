@@ -1,19 +1,58 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}My Site{% endblock %}</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../../staticfiles/images/favicon.ico">
+    <title>APP BIO4</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
-    {% include '_navbar.html' %}
-    <div class="container">
-        {% block content %}{% endblock %}
-    </div>
-</body>
-</html>
+    <script>
+      var urlEvaporacionPar = "{% url 'evaporacionpar' %}";
+      var urlEvaporacion = "{% url 'evaporacion' %}";
+    </script>
+    
+    {% if user.is_authenticated %}
+    <script>
+      function abrirVentanasSiEsHoraEspecifica() {
+        var currentTime = new Date();
+        var currentHour = currentTime.getHours();
+        var currentMinutes = currentTime.getMinutes();
+  
+        // Comprueba si la hora actual coincide con alguna de las horas específicas
+        if ((currentHour === 6 && currentMinutes === 30) ||
+            (currentHour === 10 && currentMinutes === 30) ||
+            (currentHour === 14 && currentMinutes === 30) ||
+            (currentHour === 22 && currentMinutes === 30)) {
+          var urlEvaporacion = "{% url 'evaporacion' %}";
+          window.open(urlEvaporacion, '_blank');
+        }
+  
+        if ((currentHour === 18 && currentMinutes === 30) ||
+            (currentHour === 2 && currentMinutes === 30)) {
+          var urlEvaporacionPar = "{% url 'evaporacionpar' %}";
+          window.open(urlEvaporacionPar, '_blank');
+        }
+      }
+  
+      setInterval(abrirVentanasSiEsHoraEspecifica, 59 * 1000);
+    </script>
+  {% endif %}
+  
+    
+  
 
+
+
+  </head>
+  <body>
+    {% include '_navbar.html' %}
+    
+    {% block content %}
+    
+    {% endblock %}
+  </body>
+</html>
