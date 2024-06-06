@@ -1,5 +1,8 @@
-# your_app/middleware.py
-
+import datetime
+from django.conf import settings
+from django.contrib.auth import logout
+from django.shortcuts import redirect
+from django.utils.deprecation import MiddlewareMixin
 import datetime
 from django.conf import settings
 from django.contrib.auth import logout
@@ -22,3 +25,5 @@ class AutoLogoutMiddleware(MiddlewareMixin):
         
         # Actualizar la última actividad del usuario en la sesión
         request.session['last_activity'] = str(now)
+
+

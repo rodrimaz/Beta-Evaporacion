@@ -1,4 +1,5 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %}
+{% block content %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -21,11 +22,26 @@
             max-width: 100%;
             height: auto;
         }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            display: inline-block;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
     <h1>Centro de carga de datos</h1>
     <img src="{% static 'images/logo.PNG' %}" alt="Logo">
+    {% if not user.is_authenticated %}
+        <ul>
+            <li><a href="{% url 'signin' %}">Iniciar Sesión</a></li>
+        </ul>
+    {% endif %}
 </body>
 </html>
 {% endblock %}

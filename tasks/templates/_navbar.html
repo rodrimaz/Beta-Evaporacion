@@ -16,13 +16,13 @@
       {% if user.is_authenticated %}
         <ul class="navbar-nav">
           <li class="nav-item">
-            <span class="nav-link" style="font-size: 1.3em; color: rgb(255, 255, 255);">{{ user.username }}</span>
+            <span class="nav-link" style="font-size: 1.3em; color: rgb(255, 255, 255);">{{ user.first_name }} {{ user.last_name }}</span>
           </li>
         </ul>
       {% endif %}
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a href="/" class="nav-link">Home</a>
+          <a href="/" class="nav-link">Inicio</a>
         </li>
 
         {% if user.is_authenticated %}
@@ -31,16 +31,20 @@
           </li>
           <li class="nav-item">
             {% if user.is_superuser %}
-              <a href="/admin" class="nav-link">Admin</a>
+              <a href="{% url 'BD' %}" class="nav-link">BD</a>
             {% endif %}
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/logout">Logout</a>
+            {% if user.is_superuser %}
+              <a href="/admin" class="nav-link">Admin</a>
+            {% endif %}
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Desconectar</a>
           </li>
         {% else %}
-          <li class="nav-item">
-            <a href="/signin" class="nav-link">Login</a>
-          </li>
+
         {% endif %}
       </ul>
     </div>

@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from tasks import views
-
+from tasks.views import EvaporacionListView, EvaporacionUpdateView, EvaporacionDeleteView
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -29,4 +29,8 @@ urlpatterns = [
     path('evaporacion/', views.evaporacion, name='evaporacion'),
     path('evaporacionpar/', views.evaporacionpar, name='evaporacionpar'),
     path('protected/', views.MyView.as_view(), name='protected'),
+    path('BD/', views.BD, name='BD'),
+    path('evaporaciones/', EvaporacionListView.as_view(), name='evaporacion_list'),
+    path('evaporaciones/edit/<int:pk>/', EvaporacionUpdateView.as_view(), name='evaporacion_edit'),
+    path('evaporaciones/delete/<int:pk>/', EvaporacionDeleteView.as_view(), name='evaporacion_delete'),
 ]
