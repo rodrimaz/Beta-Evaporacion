@@ -16,7 +16,7 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Duración de la sesión en segundos 
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -29,12 +29,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['192.168.113.23','127.0.0.1', 'localhost']
 
-# Deslogueo por inactividad en segundos (60 = 1 minuto)
+# Deslogueo por inactividad en segundos (14400 segundos = 4 horas)
 
-SESSION_ENGINE = 'django.contrib.sessions.backends.db'
-SESSION_COOKIE_AGE = 14400  # 4 horas
+SESSION_COOKIE_AGE = 14400 #timmer para cerrar la sesion automaticamente.
 
-
+# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -89,16 +88,17 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 DATABASES = {
     'default': {
         'ENGINE': 'sql_server.pyodbc',
-        'NAME': 'h',
+        'NAME': 'TEST',
         'USER': 'sa',
-        'PASSWORD': '230491',
-        'HOST': 'DESKTOP-V5N4P0G\\SQLEXPRESS',  # Puede ser una dirección IP o un nombre de host
+        'PASSWORD': 'bioetanol4$',
+        'HOST': 'SA0001\SQLBIO4',  # Puede ser una dirección IP o un nombre de host
         'PORT': '',  # El puerto de tu base de datos (por defecto es 1433 para SQL Server)
         'OPTIONS': {
-            'driver': 'ODBC Driver 13 for SQL Server',  # Driver ODBC para SQL Server
+            'driver': 'SQL Server Native Client 11.0',  # Driver ODBC para SQL Server
         },
     }
 }
+
 
 
 
