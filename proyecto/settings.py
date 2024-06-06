@@ -31,7 +31,7 @@ ALLOWED_HOSTS = ['192.168.113.23','127.0.0.1', 'localhost']
 
 # Deslogueo por inactividad en segundos (600 = 10 minutos)
 
-SESSION_COOKIE_AGE = 600
+SESSION_COOKIE_AGE = 14400
 
 # Application definition
 
