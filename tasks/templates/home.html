@@ -38,10 +38,15 @@
     <h1>Centro de carga de datos</h1>
     <img src="{% static 'images/logo.PNG' %}" alt="Logo">
     {% if not user.is_authenticated %}
-        <ul>
+
+    <div class="d-grid gap-2 col-6 mx-auto">  
+        <a class="btn btn-outline-dark" href="{% url 'signin' %}" role="button">Iniciar Sesión</a>
+    <div>
+        <!--<ul>
             <li><a href="{% url 'signin' %}">Iniciar Sesión</a></li>
-        </ul>
+        </ul>-->
     {% endif %}
+    <img src="https://www.bio4.com.ar/wp-content/uploads/2016/11/slider-2.jpg" />
 </body>
 </html>
 {% endblock %}
