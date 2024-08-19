@@ -247,12 +247,12 @@
             <input type="text" name="OBS" id="OBS" class="number-input5" placeholder="Observaciones">
             <!-- <input type="number" name="VISCOSIDAD" id="VISCOSIDAD" class="number-input2" placeholder="Viscosidad" step="any"> -->
             <!-- <input type="number" name="TEMPERATURA" id="TEMPERATURA" class="number-input2" placeholder="Temperatura" step="any"> -->
-            <!-- <input type="number" name="DENSIDADLAB" id="DENSIDADLAB" class="number-input2" placeholder="Densidad LAB" step="any"> -->
+             <input type="number" name="DENSIDADLAB" id="DENSIDADLAB" class="number-input2" placeholder="Densidad LAB" step="any"> -->
             <button type="button" class="exit-button" onclick="window.location.href='{% url 'home' %}'">Salir sin cargar datos PLANTA PARADA</button>
             <button type="submit">Guardar Datos</button>
         </form>
     </div>
-
+    <!--(SEGUN EL HORARIO EL SECTOR DE EVAPORACION CARGA O NO CIERTOS DATOS DE UNA MISMA PANTALLA)-->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             var form = document.querySelector("form");
@@ -260,7 +260,7 @@
             var currentHour = new Date().getHours();
             var fieldsToDisable = ["PRESIONBO2101", "PRESIONOUTIC2103", "PRESIONINIC2104", "PRESIONOUTIC2104", "PRESIONOUTIC2101", "PRESIONINIC2101", "OTBO2101"];
             var horaExcepcion = 10
-            // Deshabilitar campos si la hora es igual a 15
+            //Deshabilitar campos si la hora es igual a 15 
             if (currentHour === horaExcepcion) {
                 for (var i = 0; i < fieldsToDisable.length; i++) {
                     var fieldName = fieldsToDisable[i];

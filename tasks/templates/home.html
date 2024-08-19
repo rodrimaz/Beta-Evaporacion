@@ -45,6 +45,57 @@
         <!--<ul>
             <li><a href="{% url 'signin' %}">Iniciar Sesión</a></li>
         </ul>-->
+    
+    {% else %}
+    <div class="buttons-container d-flex justify-content-center mt-4 gap-2">
+        <!-- Botón 1 -->
+        <div class="btn-group dropright">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                Carga de Datos
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'evaporacion' %}">Evaporación</a></li>
+                <li><a class="dropdown-item" href="{% url 'evaporacionpar' %}">Evaporación Par</a></li>
+            </ul>
+        </div>
+        <!-- Botón 2 -->
+        <div class="btn-group dropright">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                Reporte Fallas
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'fallas_lista' %}">Fallas</a></li>
+                <li><a class="dropdown-item" href="#">Fallas BG</a></li>
+            </ul>
+        </div>
+        <!-- Botón 3 -->
+        <div class="btn-group dropright">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                Programadores
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Programador ANH</a></li>
+                <li><a class="dropdown-item" href="#">Programador Caldera</a></li>
+                <li><a class="dropdown-item" href="#">Programador DEST</a></li>
+                <li><a class="dropdown-item" href="#">Programador ISLA</a></li>
+                <li><a class="dropdown-item" href="#">Programador LAB</a></li>
+                <li><a class="dropdown-item" href="#">Programador MLF</a></li>
+                <li><a class="dropdown-item" href="#">Programador SEC</a></li>
+                <li><a class="dropdown-item" href="#">Programador SEPEVAP</a></li>
+            </ul>
+        </div>
+        <!-- Botón 4 -->
+        <div class="btn-group dropright">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                Botón 4
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Opción 4.1</a></li>
+                <li><a class="dropdown-item" href="#">Opción 4.2</a></li>
+                <li><a class="dropdown-item" href="#">Opción 4.3</a></li>
+            </ul>
+        </div>
+    </div>
     {% endif %}
     <img src="https://www.bio4.com.ar/wp-content/uploads/2016/11/slider-2.jpg" />
 </body>

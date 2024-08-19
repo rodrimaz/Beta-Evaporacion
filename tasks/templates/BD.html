@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+       
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +11,7 @@
     <title>Acceso a la base de datos</title>
 </head>
 <body>
+    <!-- Se agregan botones de acceso a distintas tablas de la base de datos -->
     <h1>Selecciona una Tabla a editar:</h1>
     <ul>
         <li><a href="{% url 'evaporacion_list' %}">Acceder a la tabla de Evaporacion</a></li>

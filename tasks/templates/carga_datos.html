@@ -1,4 +1,4 @@
-<!-- carga_datos.html -->
+
 {% extends "base.html" %}
 
 {% block content %}
@@ -11,16 +11,12 @@
     <title>Carga de Datos</title>
 </head>
 <body>
+    <!-- Se agregan botones de acceso a distintas vistas de carga de datos -->
     <h4>Seleccionar para cargar datos:</h4>
     <div class="d-grid gap-2 col-6 mx-auto">  
         <a class="btn btn-outline-dark" href="{% url 'evaporacion' %}" role="button">Evaporacion</a>
         <a class="btn btn-outline-dark" href="{% url 'evaporacionpar' %}" role="button">Evaporacion Horas Par</a>
     <div>
-        <!--
-    <ul>
-        <li><a href="{% url 'evaporacion' %}">Acceder a Evaporacion</a></li>
-        <li><a href="{% url 'evaporacionpar' %}">Acceder a Evaporacion Horas PAR</a></li>
-    </ul>-->
 </body>
 </html>
 {% endblock %}

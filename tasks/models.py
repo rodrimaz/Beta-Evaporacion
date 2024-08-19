@@ -4,9 +4,38 @@ from django.utils import timezone
 from django.contrib.auth import get_user_model
 import pytz
 
+class Parcelascsv(models.Model):
+    parcela = models.AutoField(primary_key=True)
+    responsable = models.CharField(max_length=255)
+    sponsor = models.CharField(max_length=255)
+    descripcion_parcela = models.CharField(db_column='Descripcion Parcela', max_length=255)
+    sector = models.CharField(max_length=255)
+    auditores = models.CharField(max_length=255)
 
-# Modelo para Guardar de operarios (datos, usuario y fecha)
-  
+    class Meta:
+        db_table = 'parcelascsv'
+        managed = False
+
+    def __str__(self):
+        return str(self.parcela)
+
+# Modelo TABLA DE FALLAS (General para todos los reportes)
+class Falla(models.Model):
+    id_falla = models.AutoField(primary_key=True)
+    fecha = models.DateTimeField(auto_now_add=True)
+    operario = models.CharField(max_length=255)
+    area = models.CharField(max_length=255, null=True, blank=True)  
+    parcela_sector = models.CharField(max_length=255)
+    falla = models.TextField()
+    posible_causa = models.TextField()
+    posible_solucion = models.TextField()
+    estado = models.CharField(max_length=255, null=True, blank=True)
+    fecha_conclusion = models.DateTimeField(null=True, blank=True)
+    conclusion = models.TextField(null=True, blank=True)
+    operario_conclusion = models.CharField(max_length=255, null=True, blank=True)
+    imagen = models.ImageField(upload_to='fallas/', null=True, blank=True)
+
+# Modelo TABLA EVAPORACION (incluye evaporacion y evaporacion par)
 class Evaporacion(models.Model):
     Id_evaporacion = models.AutoField(primary_key=True)
     fecha = models.DateTimeField(auto_now_add=True)

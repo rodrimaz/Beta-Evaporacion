@@ -16,6 +16,8 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # Quick-start development settings - unsuitable for production
@@ -27,11 +29,11 @@ SECRET_KEY = '9r=$*uz1tm_b0lqw2_8qe8vl&za(wij$2v+%h^rqfh5r0)w)3d'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.113.23','127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['192.168.100.50','127.0.0.1', 'localhost']
 
 # Deslogueo por inactividad en segundos (14400 segundos = 4 horas)
 
-SESSION_COOKIE_AGE = 600
+SESSION_COOKIE_AGE = 14400
 
 # Application definition
 
@@ -148,9 +150,11 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'tasks', 'static'),
 ]
 
+# Configuracion para envio de mails
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.office365.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'no_reply@bio4.com.ar'
-EMAIL_HOST_PASSWORD = '********'
+EMAIL_HOST_PASSWORD = 'Gksu294mn%'
