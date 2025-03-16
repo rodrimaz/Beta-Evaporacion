@@ -1,0 +1,124 @@
+{% extends 'core/templates/base.html' %}
+{% block content %}
+{% load static %}
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla Evaporacion</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        
+        .filter-export-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .filter-form {
+            display: flex;
+            align-items: center;
+        }
+        .filter-form input {
+            margin-right: 10px;
+        }
+        .export-button {
+            display: flex;
+            align-items: center;
+        }
+        .export-button img {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tabla de Evaporacion</h1>
+    <div class="filter-export-container">
+        <form method="GET" class="filter-form">
+            <label for="start_date">Desde:</label>
+            <input type="date" id="start_date" name="start_date" value="{{ start_date }}">
+            <label for="end_date">Hasta:</label>
+            <input type="date" id="end_date" name="end_date" value="{{ end_date }}">
+            <button type="submit">Filtrar</button>
+        </form>
+        <div class="export-button">
+            <a href="{% url 'export_evaporaciones' %}?start_date={{ start_date }}&end_date={{ end_date }}">
+                <img src="{% static 'images/excel_icon.png' %}" alt="Excel Icon" width="24" height="24">
+                Exportar a Excel
+            </a>
+        </div>
+    </div>
+
+    <table  class="table table-striped table-hover">
+        <thead>
+            <!-- COLUMNAS DE LA LISTA Y SUS NOMBRES -->
+            <tr>
+                <th>ID</th>
+                <th>Fecha</th>
+                <th>Operario</th>
+                <th>Totalizador Condensado</th>
+                <th>OT BO2101</th>
+                <th>Presión BO2101</th>
+                <th>Presión Ingreso IC2101</th>
+                <th>Presión Egreso IC2101 Ingreso IC2103</th>
+                <th>Presión Egreso IC2103</th>
+                <th>Presión Ingreso IC2104</th>
+                <th>Presión Egreso IC2104</th>
+                <th>T Ingreso Agua IC701</th>
+                <th>T Salida Agua IC701</th>
+                <th>Presión Ingreso Agua IC701</th>
+                <th>Presión Salida Agua IC701</th>
+                <th>Presión Salida Vahos IC701</th>
+                <th>Observaciones</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for evaporacion in evaporaciones %}
+            <!-- VALORES ASIGNADOS A CADA COLUMNA (EN ORDEN) -->
+            <tr>
+                <td>{{ evaporacion.id }}</td>
+                <td>{{ evaporacion.fecha }}</td>
+                <td>{{ evaporacion.operario }}</td>
+                <td>{{ evaporacion.totalizador_condensado }}</td>
+                <td>{{ evaporacion.OT_BO2101 }}</td>
+                <td>{{ evaporacion.presion_BO2101 }}</td>
+                <td>{{ evaporacion.presion_ingreso_IC2101 }}</td>
+                <td>{{ evaporacion.presion_egreso_IC2101_ingreso_IC2103 }}</td>
+                <td>{{ evaporacion.presion_egreso_IC2103 }}</td>
+                <td>{{ evaporacion.presion_ingreso_IC2104 }}</td>
+                <td>{{ evaporacion.presion_egreso_IC2104 }}</td>
+                <td>{{ evaporacion.T_ingreso_agua_IC701 }}</td>
+                <td>{{ evaporacion.T_salida_agua_IC701 }}</td>
+                <td>{{ evaporacion.presion_ingreso_agua_IC701 }}</td>
+                <td>{{ evaporacion.presion_salida_agua_IC701 }}</td>
+                <td>{{ evaporacion.presion_salida_vahos_IC701 }}</td>
+                <td>{{ evaporacion.observaciones }}</td>
+                <td>
+                    <!-- DENTRO DE LA COLUMNA ACCIONES SE ASIGNA LLAMADOS A LAS FUNCIONES EDITAR Y ELIMINAR -->
+                    <a href="{% url 'evaporacion_edit' evaporacion.pk %}" class="btn btn-outline-dark" >Editar</a>
+                    <a href="{% url 'evaporacion_delete' evaporacion.pk %}" class="btn btn-outline-dark" >Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>  
+</body>
+</html>
+{% endblock %}
+
+
+
+

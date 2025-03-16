@@ -1,0 +1,10 @@
+{% extends 'core/templates/base.html' %}
+{% block content %}
+  <h2>Confirmar Eliminación</h2>
+  <p>¿Estás seguro que deseas eliminar esta carga?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Eliminar</button>
+    <button type="button" onclick="history.back()">Cancelar</button>
+  </form>
+{% endblock %}
