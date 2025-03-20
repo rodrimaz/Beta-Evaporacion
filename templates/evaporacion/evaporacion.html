@@ -1,0 +1,107 @@
+{% extends 'core/base.html' %}
+{% block content %} 
+{% load static %}
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'evaporacion/css/style.css' %}">
+    <title>Imagen con Número</title>
+</head>
+<body>
+    <div class="image-container">
+        <img src="{% static 'images/evaporacion.png' %}" alt="Imagen">
+        <form method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+            {% csrf_token %}
+            <input type="number" name="OTBO2101" id="OTBO2101" class="number-input4" placeholder="OT BO2101" step="any">
+            <input type="number" name="PRESIONBO2101" id="PRESIONBO2101" class="number-input2" placeholder="PRESION BO2101" step="any">
+            <input type="number" name="PRESIONINIC2101" id="PRESIONINIC2101" class="number-input2" placeholder="PRESION IN IC2101" step="any">
+            <input type="number" name="PRESIONOUTIC2101" id="PRESIONOUTIC2101" class="number-input2" placeholder="PRESION OUT IC2101" step="any">
+            <input type="number" name="PRESIONOUTIC2103" id="PRESIONOUTIC2103" class="number-input2" placeholder="PRESION OUT IC2103" step="any">
+            <input type="number" name="PRESIONINIC2104" id="PRESIONINIC2104" class="number-input2" placeholder="PRESION IN IC2104" step="any">
+            <input type="number" name="PRESIONOUTIC2104" id="PRESIONOUTIC2104" class="number-input2" placeholder="PRESION OUT IC2104" step="any">
+            
+            <input type="text" name="OBS" id="OBS" class="number-input5" placeholder="Observaciones">
+            <button type="button" class="exit-button" onclick="window.location.href='{% url 'home' %}'">Salir</button>
+            <button type="submit">Guardar Datos</button>
+        </form>
+    </div>
+    <!--(SEGUN EL HORARIO EL SECTOR DE EVAPORACION CARGA O NO CIERTOS DATOS DE UNA MISMA PANTALLA)-->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var form = document.querySelector("form");
+            var numericInputs = form.querySelectorAll("input[type=number]");
+            var currentHour = new Date().getHours();
+            var fieldsToDisable = ["PRESIONBO2101", "PRESIONOUTIC2103", "PRESIONINIC2104", "PRESIONOUTIC2104", "PRESIONOUTIC2101", "PRESIONINIC2101", "OTBO2101"];
+            var horaExcepcion = 10
+            //Deshabilitar campos si la hora es igual a 15 
+            if (currentHour === horaExcepcion) {
+                for (var i = 0; i < fieldsToDisable.length; i++) {
+                    var fieldName = fieldsToDisable[i];
+                    var input = form.querySelector("input[name=" + fieldName + "]");
+                    if (input) {
+                        input.disabled = true;
+                        input.style.backgroundColor = "#CCCCCC"; // Cambiar el color de fondo a gris
+                    }
+                }
+            }
+    
+            form.addEventListener("submit", function (event) {
+                // Verificar campos numericos obligatorios
+                for (var i = 0; i < numericInputs.length; i++) {
+                    var input = numericInputs[i];
+                    // Verificar si el campo no está deshabilitado y está vacío
+                    if (currentHour === horaExcepcion) {
+                        if (!input.value.trim() && fieldsToDisable.indexOf(input.name) === -1) {
+                            event.preventDefault();
+                            alert("Complete todos los campos numéricos antes de guardar.");
+                            return;
+                        }
+                    } else {
+                        if (!input.value.trim()) {
+                            event.preventDefault();
+                            alert("Por favor, complete todos los campos numéricos antes de guardar.");
+                            return;
+                        }
+                    }
+                }
+            });
+    
+            // Manejar el evento de cierre de ventana
+            function confirmExit(event) {
+                var formInputs = form.querySelectorAll("input[type=number]");
+                var allFieldsComplete = true;
+    
+                // Verificar campos numericos obligatorios
+                for (var i = 0; i < formInputs.length; i++) {
+                    var input = formInputs[i];
+                    if (!input.value.trim() && fieldsToDisable.indexOf(input.name) === -1) {
+                        allFieldsComplete = false;
+                        break;
+                    }
+                }
+    
+                // Mostrar mensaje de confirmación si no todos los campos obligatorios están completos
+                if (!allFieldsComplete) {
+                    var confirmation = confirm("¿Estás seguro de que deseas salir? Los cambios no guardados se perderán.");
+                    if (!confirmation) {
+                        event.preventDefault();
+                    }
+                }
+            }
+    
+            // Agregar el evento de cierre de ventana
+            window.addEventListener("beforeunload", confirmExit);
+        });
+    </script>
+    
+    
+    
+    
+    
+    
+</body>
+</html>
+{% endblock %}
+    
+    
+    
+    

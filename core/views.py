@@ -7,26 +7,26 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 class MyView(LoginRequiredMixin, TemplateView):
-    template_name = 'deslogueado.html'
+    template_name = 'core/deslogueado.html'
     login_url = 'signin'
 
 #Acceso a pantalla de EXITO
 def exito(request):
-    return render(request, 'exito.html')
+    return render(request, 'core/exito.html')
 
 #Acceso a pantalla de Carga de datos
 @login_required(login_url='signin')
 def create_task(request):
-    return render(request, 'carga_datos.html')
+    return render(request, 'core/carga_datos.html')
 
 #Acceso a pantalla de Base de datos
 @login_required(login_url='signin')
 def BD(request):
-    return render(request, 'BD.html')
+    return render(request, 'core/BD.html')
 
 #Acceso a pantalla HOME
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'core/home.html')
 
 #Desconexion manual
 @login_required(login_url='signin')
@@ -37,12 +37,12 @@ def signout(request):
 #Logueo
 def signin(request):
     if request.method == 'GET':
-        return render(request, 'signin.html', {"form": AuthenticationForm})
+        return render(request, 'core/signin.html', {"form": AuthenticationForm})
     else:
         user = authenticate(
             request, username=request.POST['username'], password=request.POST['password'])
         if user is None:
-            return render(request, 'signin.html', {"form": AuthenticationForm, "error": "Username or password is incorrect."})
+            return render(request, 'core/signin.html', {"form": AuthenticationForm, "error": "Username or password is incorrect."})
 
         login(request, user)
         return redirect('home')

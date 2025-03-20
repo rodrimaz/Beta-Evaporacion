@@ -75,7 +75,7 @@ def export_evaporaciones(request):
 @method_decorator(login_required, name='dispatch')
 class EvaporacionListView(ListView):
     model = Evaporacion
-    template_name = 'evaporacion_list.html'
+    template_name = 'evaporacion/evaporacion_list.html'
     context_object_name = 'evaporaciones'
     ordering = ['-fecha']
 
@@ -102,7 +102,7 @@ class EvaporacionListView(ListView):
 @method_decorator(login_required, name='dispatch')
 class EvaporacionUpdateView(UpdateView):
     model = Evaporacion
-    template_name = 'evaporacion_form.html'
+    template_name = 'evaporacion/evaporacion_form.html'
     fields = [
         'totalizador_condensado', 
         'OT_BO2101', 
@@ -125,7 +125,7 @@ class EvaporacionUpdateView(UpdateView):
 @method_decorator(login_required, name='dispatch')
 class EvaporacionDeleteView(DeleteView):
     model = Evaporacion
-    template_name = 'confirm_delete.html' #Utilizable para cualquier eliminar (no depende del tipo de tabla)
+    template_name = 'evaporacion/confirm_delete.html' #Utilizable para cualquier eliminar (no depende del tipo de tabla)
     success_url = reverse_lazy('evaporacion_list')
 
 #Carga de datos (evaporacion)
@@ -167,7 +167,7 @@ def evaporacion(request):
         # Redirigir a la página de éxito o a donde desees
         return redirect('exito')
 
-    return render(request, 'evaporacion.html')  # Ajusta el nombre del template según tu estructura
+    return render(request, 'evaporacion/evaporacion.html')  # Ajusta el nombre del template según tu estructura
 
 #Carga de datos (evaporacion)
 @login_required(login_url='signin')
@@ -206,7 +206,7 @@ def evaporacionpar(request):
         # Redirigir a la página de éxito o a donde desees
         return redirect('exito')
 
-    return render(request, 'evaporacionpar.html')
+    return render(request, 'evaporacion/evaporacionpar.html')
 
 
 
