@@ -1,4 +1,4 @@
-{% extends 'core/templates/base.html' %}
+{% extends 'core/base.html' %}
 {% block content %}
 {% load static %}
 
@@ -94,14 +94,13 @@
                 <td>{{ evaporacion.operario }}</td>
                 <td>{{ evaporacion.totalizador_condensado }}</td>
                 <td>{{ evaporacion.OT_BO2101 }}</td>
+                <td>{{ evaporacion.presion_salida_IC2102 }}</td>
                 <td>{{ evaporacion.presion_BO2101 }}</td>
                 <td>{{ evaporacion.presion_ingreso_IC2101 }}</td>
                 <td>{{ evaporacion.presion_egreso_IC2101_ingreso_IC2103 }}</td>
                 <td>{{ evaporacion.presion_egreso_IC2103 }}</td>
-                <td>{{ evaporacion.presion_ingreso_IC2104 }}</td>
-                <td>{{ evaporacion.presion_egreso_IC2104 }}</td>
-                <td>{{ evaporacion.T_ingreso_agua_IC701 }}</td>
-                <td>{{ evaporacion.T_salida_agua_IC701 }}</td>
+                <td>{{ evaporacion.temp_ingreso_agua_IC701 }}</td>
+                <td>{{ evaporacion.temp_salida_agua_IC701 }}</td>
                 <td>{{ evaporacion.presion_ingreso_agua_IC701 }}</td>
                 <td>{{ evaporacion.presion_salida_agua_IC701 }}</td>
                 <td>{{ evaporacion.presion_salida_vahos_IC701 }}</td>

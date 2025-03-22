@@ -11,14 +11,13 @@
         <img src="{% static 'images/EVAPORACIONPAR.png' %}" alt="Imagen">
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <input type="number" name="TINGRESO" id="TINGRESO" class="number-input6" placeholder="T° INGRESO" step="any">
-            <input type="number" name="TEGRESO" id="TEGRESO" class="number-input6" placeholder="T° SALIDA" step="any">
-            <input type="number" name="PRESIONINGRESO" id="PRESIONINGRESO" class="number-input6" placeholder="PRESION INGRESO" step="any">
-            <input type="number" name="PRESIONSALIDA" id="PRESIONSALIDA" class="number-input6" placeholder="PRESION SALIDA" step="any">
-            <input type="number" name="PRESIONIC701" id="PRESIONIC701" class="number-input7" placeholder="PRESION SALIDA IC701 (bar)" step="any">
-            <input type="number" name="CONDENSADO" id="CONDENSADO" class="number-input3" placeholder="CONDENSADO" step="any">
-
-            <input type="text" name="OBS" id="OBS" class="number-input5" placeholder="Observaciones" step="any">
+            <input type="number" name="temp_ingreso_agua_IC701" id="temp_ingreso_agua_IC701" class="number-input6" placeholder="Temp Ingreso Agua" data-bs-toggle="tooltip" data-bs-placement="top" title="Temp Ingreso Agua IC701 (°C)">
+            <input type="number" name="temp_salida_agua_IC701" id="temp_salida_agua_IC701" class="number-input6" placeholder="Temp Salida Agua" data-bs-toggle="tooltip" data-bs-placement="top" title="Temp Salida Agua IC701 (°C)">
+            <input type="number" name="presion_ingreso_agua_IC701" id="presion_ingreso_agua_IC701" class="number-input6" placeholder="Presion Ingreso Agua" data-bs-toggle="tooltip" data-bs-placement="top" title="Presion Ingreso Agua IC701 (bar)">
+            <input type="number" name="presion_salida_agua_IC701" id="presion_salida_agua_IC701" class="number-input6" placeholder="Presion Salida Agua" data-bs-toggle="tooltip" data-bs-placement="top" title="Presion Salida Agua IC701 (bar)">
+            <input type="number" name="presion_salida_vahos_IC701" id="presion_salida_vahos_IC701" class="number-input7" placeholder="Presion Salida Vahos" data-bs-toggle="tooltip" data-bs-placement="top" title="Presion Salida Vahos IC701 (bar)">
+            <input type="number" name="totalizador_condensado" id="totalizador_condensado" class="number-input3" placeholder="Condensado (m3)" data-bs-toggle="tooltip" data-bs-placement="top" title="Totalizador condensado (m3)">
+            <input type="text" name="observaciones" id="observaciones" class="number-input5" placeholder="Observaciones" data-bs-toggle="tooltip" data-bs-placement="top" title="Observaciones">
             <button type="button" class="exit-button" onclick="window.location.href='{% url 'home' %}'">Salir</button>
             <button type="submit" class="save-button">Guardar</button>
         </form>
@@ -26,6 +25,11 @@
 
 
     <script>
+        $('input')..tooltip({
+            animated: 'fade',
+            placement: 'bottom',
+        });
+
         document.addEventListener("DOMContentLoaded", function () {
             var form = document.querySelector("form");
             var numericInputs = form.querySelectorAll("input[type=number]");

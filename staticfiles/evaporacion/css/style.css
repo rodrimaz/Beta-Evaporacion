@@ -17,279 +17,152 @@
 
 .number-input {
     position: absolute;
-    border: 1.5px solid black;
-    background-color: yellow; /* Fondo amarillo */
+    border: 3px solid #216c2a; 
+    background-color: #e6f9e6; 
     text-align: center;
-    width: 70px; /* Reducir el ancho del campo */
-    height: 20px; /* Reducir la altura del campo */
-    font-size: 12px; /* Reducir el tamaño de la fuente */
-    padding: 5px; /* Agregar espacio interno para mejorar la apariencia */
-}
-.number-input2 {
-    /* position: absolute;
-    border: 1.5px solid black;
-    background-color: yellow; 
-    text-align: center;
-    width: 130px;
+    width: 70px; 
     height: 20px; 
-    font-size: 11px; 
-    padding: 5px;  */
-    position: absolute;
-    border: 2px solid #216c2a; /* Dark green border for contrast */
-    background-color: #e6f9e6; /* Soft light green background */
-    text-align: center;
-    width: 120px; /* Reducir el ancho del campo */
-    height: 25px; /* Reducir la altura del campo */
-    font-size: 10px; /* Reducir el tamaño de la fuente */
-    padding: 3px; /* Agregar espacio interno para mejorar la apariencia */
-    border-radius: 1px; /* Rounded corners for a softer look */
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
-    color: #003366; /* Dark blue text for better contrast */
+    font-size: 12px; 
+    padding: 3px; 
+    border-radius: 0,5px; 
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); 
+    color: #003366; 
     font-weight: bold;
-    outline: none; /* Removes default focus outline */
+    outline: none; 
     transition: all 0.3s ease-in-out;
 }
 
-.number-input2:focus {
-    border-color: #0d4d14; /* Even darker green for a strong focus */
-    background-color: #baf7ba; /* Brighter green when focused */
-    box-shadow: 0px 0px 12px rgba(13, 77, 20, 0.8); /* Stronger green glow */
-    transform: scale(1.05); /* Slight zoom effect for emphasis */
-}
-
-.number-input::-webkit-inner-spin-button,
-.number-input::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-.number-input::-webkit-clear-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-.number-input2::-webkit-inner-spin-button,
-.number-input2::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-.number-input2::-webkit-clear-button {
-    -webkit-appearance: none;
-    margin: 0;
+.number-input2 {
+    position: absolute;
+    border: 3px solid #216c2a; 
+    background-color: #e6f9e6; 
+    text-align: center;
+    width: 120px; 
+    height: 25px; 
+    font-size: 10px; 
+    padding: 3px; 
+    border-radius: 0,5px; 
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); 
+    color: #003366; 
+    font-weight: bold;
+    outline: none; 
+    transition: all 0.3s ease-in-out;
 }
 
 .number-input3 {
     position: absolute;
-    border: 2px solid #216c2a; /* Dark green border for contrast */
-    background-color: #e6f9e6; /* Soft light green background */
+    border: 3px solid #216c2a; 
+    background-color: #e6f9e6; 
     text-align: center;
-    width: 225px; /* Reducir el ancho del campo */
-    height: 20px; /* Reducir la altura del campo */
-    font-size: 10px; /* Reducir el tamaño de la fuente */
-    padding: 3px; /* Agregar espacio interno para mejorar la apariencia */
-    border-radius: 1px; /* Rounded corners for a softer look */
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
-    color: #003366; /* Dark blue text for better contrast */
+    width: 225px; 
+    height: 20px; 
+    font-size: 10px; 
+    padding: 3px; 
+    border-radius: 0,5px; 
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); 
+    color: #003366; 
     font-weight: bold;
-    outline: none; /* Removes default focus outline */
+    outline: none; 
     transition: all 0.3s ease-in-out;
-}
-
-.number-input::-webkit-inner-spin-button,
-.number-input::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-.number-input::-webkit-clear-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-.number-input3::-webkit-inner-spin-button,
-.number-input3::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-.number-input3::-webkit-clear-button {
-    -webkit-appearance: none;
-    margin: 0;
 }
 
 .number-input4 {
     position: absolute;
-    border: 2px solid #216c2a; /* Dark green border for contrast */
-    background-color: #e6f9e6; /* Soft light green background */
+    border: 3px solid #216c2a; 
+    background-color: #e6f9e6; 
     text-align: center;
-    width: 85px; /* Reducir el ancho del campo */
-    height: 21px; /* Reducir la altura del campo */
-    font-size: 10px; /* Reducir el tamaño de la fuente */
-    padding: 3px; /* Agregar espacio interno para mejorar la apariencia */
-    border-radius: 1px; /* Rounded corners for a softer look */
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
-    color: #003366; /* Dark blue text for better contrast */
+    width: 85px; 
+    height: 21px; 
+    font-size: 10px; 
+    padding: 3px; 
+    border-radius: 0,5px; 
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); 
+    color: #003366; 
     font-weight: bold;
-    outline: none; /* Removes default focus outline */
+    outline: none; 
     transition: all 0.3s ease-in-out;
-}
-
-.number-input::-webkit-inner-spin-button,
-.number-input::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-.number-input::-webkit-clear-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-.number-input4::-webkit-inner-spin-button,
-.number-input4::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-.number-input4::-webkit-clear-button {
-    -webkit-appearance: none;
-    margin: 0;
 }
 
 .number-input5 {
     position: absolute;
-    border: 2px solid #216c2a; /* Dark green border for contrast */
-    background-color: #e6f9e6; /* Soft light green background */
+    border: 3px solid #216c2a; 
+    background-color: #e6f9e6; 
     text-align: center;
-    width: 380px; /* Reducir el ancho del campo */
-    height: 50px; /* Reducir la altura del campo */
-    font-size: 10px; /* Reducir el tamaño de la fuente */
-    padding: 3px; /* Agregar espacio interno para mejorar la apariencia */
-    border-radius: 1px; /* Rounded corners for a softer look */
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
-    color: #003366; /* Dark blue text for better contrast */
+    width: 380px; 
+    height: 50px; 
+    font-size: 10px; 
+    padding: 3px; 
+    border-radius: 0,5px; 
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); 
+    color: #003366; 
     font-weight: bold;
-    outline: none; /* Removes default focus outline */
+    outline: none; 
     transition: all 0.3s ease-in-out;
-}
-
-.number-input::-webkit-inner-spin-button,
-.number-input::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-.number-input::-webkit-clear-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-.number-input5::-webkit-inner-spin-button,
-.number-input5::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-.number-input5::-webkit-clear-button {
-    -webkit-appearance: none;
-    margin: 0;
 }
 
 .number-input6 {
     position: absolute;
-    border: 2px solid #216c2a; /* Dark green border for contrast */
-    background-color: #e6f9e6; /* Soft light green background */
+    border: 3px solid #216c2a;
+    background-color: #e6f9e6; 
     text-align: center;
-    width: 110px; /* Reducir el ancho del campo */
-    height: 35px; /* Reducir la altura del campo */
-    font-size: 10px; /* Reducir el tamaño de la fuente */
-    padding: 3px; /* Agregar espacio interno para mejorar la apariencia */
-    border-radius: 1px; /* Rounded corners for a softer look */
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
-    color: #003366; /* Dark blue text for better contrast */
+    width: 112px; 
+    height: 35px; 
+    font-size: 10px; 
+    padding: 3px; 
+    border-radius: 0,3px; 
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); 
+    color: #003366; 
     font-weight: bold;
-    outline: none; /* Removes default focus outline */
+    outline: none; 
     transition: all 0.3s ease-in-out;
 }
 
-.number-input::-webkit-inner-spin-button,
-        .number-input::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
+.number-input7 {
+    position: absolute;
+    border: 3px solid #216c2a; 
+    background-color: #e6f9e6; 
+    text-align: center;
+    width: 205px; 
+    height: 30px; 
+    font-size: 10px; 
+    padding: 3px; 
+    border-radius: 0,5px; 
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); 
+    color: #003366; 
+    font-weight: bold;
+    outline: none; 
+    transition: all 0.3s ease-in-out;
+}
 
-        .number-input::-webkit-clear-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-        .number-input6::-webkit-inner-spin-button,
-        .number-input6::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-
-        .number-input6::-webkit-clear-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-        
-        .number-input7 {
-            position: absolute;
-            border: 2px solid #216c2a; /* Dark green border for contrast */
-            background-color: #e6f9e6; /* Soft light green background */
-            text-align: center;
-            width: 205px; /* Reducir el ancho del campo */
-            height: 30px; /* Reducir la altura del campo */
-            font-size: 10px; /* Reducir el tamaño de la fuente */
-            padding: 3px; /* Agregar espacio interno para mejorar la apariencia */
-            border-radius: 1px; /* Rounded corners for a softer look */
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
-            color: #003366; /* Dark blue text for better contrast */
-            font-weight: bold;
-            outline: none; /* Removes default focus outline */
-            transition: all 0.3s ease-in-out;
-        }
-
-        .number-input::-webkit-inner-spin-button,
-        .number-input::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-
-        .number-input::-webkit-clear-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-        .number-input7::-webkit-inner-spin-button,
-        .number-input7::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-
-        .number-input7::-webkit-clear-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-
+.number-input2:focus,
 .number-input3:focus,
 .number-input4:focus,
 .number-input5:focus,
 .number-input6:focus,
 .number-input7:focus{
-    border-color: #0d4d14; /* Even darker green for a strong focus */
-    background-color: #baf7ba; /* Brighter green when focused */
-    box-shadow: 0px 0px 12px rgba(13, 77, 20, 0.8); /* Stronger green glow */
-    transform: scale(1.05); /* Slight zoom effect for emphasis */
+    border-color: #0d4d14; 
+    background-color: #baf7ba; 
+    box-shadow: 0px 0px 12px rgba(13, 77, 20, 0.8); 
+    transform: scale(1.1); 
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 button.save-button {
     position: absolute;
-    border: 2px solid #216c2a; /* Dark green border */
-    background: linear-gradient(to bottom, #4caf50, #2e7d32); /* Green gradient */
+    border: 3px solid #216c2a; 
+    background: linear-gradient(to bottom, #4caf50, #2e7d32); 
     text-align: center;
     width: 180px; /* Slightly wider */
     height: 50px;
     font-size: 16px;
     font-weight: bold;
-    text-transform: uppercase; /* Makes it stand out more */
-    color: white; /* White text for contrast */
+    text-transform: uppercase;
+    color: white;
     padding: 10px;
     margin-top: -53px;
     margin-left: 950px;
@@ -301,16 +174,16 @@ button.save-button {
 
 button.save-button:hover,
 button.save-button:focus {
-    background: linear-gradient(to bottom, #388e3c, #1b5e20); /* Darker green */
-    border-color: #155d1a; /* Darker outline */
+    background: linear-gradient(to bottom, #388e3c, #1b5e20); 
+    border-color: #155d1a; 
     box-shadow: 0px 0px 12px rgba(13, 77, 20, 0.8);
-    transform: scale(1.05);
+    transform: scale(1.02);
 }
 
 button.exit-button {
     position: absolute;
-    border: 2px solid #8b0000; /* Dark red border */
-    background: linear-gradient(to bottom, #e53935, #b71c1c); /* Red gradient */
+    border: 3px solid #8b0000;
+    background: linear-gradient(to bottom, #e53935, #b71c1c);
     text-align: center;
     width: 180px; /* Slightly wider */
     height: 50px;
@@ -329,41 +202,39 @@ button.exit-button {
 
 button.exit-button:hover,
 button.exit-button:focus {
-    background: linear-gradient(to bottom, #d32f2f, #8b0000); /* Darker red */
-    border-color: #600000; /* Darker outline */
+    background: linear-gradient(to bottom, #d32f2f, #8b0000);
+    border-color: #600000;
     box-shadow: 0px 0px 12px rgba(139, 0, 0, 0.8);
-    transform: scale(1.05);
+    transform: scale(1.02);
 }
 
-/* Ajusta estas coordenadas según la posición que desees para cada campo */
+/* Evaporacion Par*/
+#temp_ingreso_agua_IC701 { top: 302px; left: 1198px; }
+#temp_salida_agua_IC701 { top: 302px; left: 1320px; }
+#presion_ingreso_agua_IC701 { top: 343px; left: 1198px; }
+#presion_salida_agua_IC701  { top: 343px; left: 1320px; }
+#presion_salida_vahos_IC701 { top: 603px; left: 1212px; }
+#totalizador_condensado { top: 683px; left: 18px; }
+/* Evaporacion Par */
+#OT_BO2101 { top: 153px; left: 1185px; }
+#presion_BO2101 { top: 174px; left: 1185px; }
+#presion_egreso_IC2103 { top: 383px; left: 1080px; }
+#presion_salida_IC2102 { top: 383px; left: 1236px; }
+#presion_egreso_IC2101_ingreso_IC2103 { top: 495px; left: 966px; }
+#presion_ingreso_IC2101 { top: 524px; left: 1107px; }
+/* Ambos */
+#observaciones { top: 652px; left: 525px; }
+
 #PT05 { top: 74px; left: 54px; }
 #PT04 { top: 74px; left: 415px; }
 #PT03 { top: 74px; left: 725px; }
 #OTEYECTOR1 { top: 73px; left: 820px; }
 #PT01PT02 { top: 74px; left: 965px; }
 #OTEYECTOR2 { top: 32px; left: 820px; }
-
-#TINGRESO { top: 302px; left: 1198px; }
-#TEGRESO { top: 302px; left: 1320px; }
-#PRESIONINGRESO { top: 343px; left: 1198px; }
-#PRESIONSALIDA  { top: 343px; left: 1320px; }
-#PRESIONIC701 { top: 603px; left: 1212px; }
-
-#PRESIONBO2101 { top: 174px; left: 1185px; }
-#PRESIONOUTIC2103 { top: 383px; left: 1080px; }
-#PRESIONINIC2104 { top: 383px; left: 1236px; }
-#PRESIONOUTIC2104  { top: 412px; left: 1298px; }
-#PRESIONOUTIC2101 { top: 495px; left: 966px; }
-#PRESIONINIC2101 { top: 524px; left: 1107px; }
-#CONDENSADO { top: 683px; left: 18px; }
-/* #POTENCIAINSTA { top: 683Px; left: 268Px; } */
-#OTBO2101 { top: 153px; left: 1185px; }
 #LCV01 { top: 371px; left: 800px; }
-
 #CAUDALVL { top: 335px; left: 808px; }
 #ST2EF { top: 240px; left: 643px; }
 #DENSIDAD { top: 380px; left: 495px; }
-#OBS { top: 652px; left: 525px; }
 #VISCOSIDAD { top: 382px; left: 356px; }
 #TEMPERATURA { top: 403px; left: 356px; }
 #DENSIDADLAB { top: 425px; left: 356px; }

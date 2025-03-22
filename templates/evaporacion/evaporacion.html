@@ -11,17 +11,16 @@
         <img src="{% static 'images/evaporacion.png' %}" alt="Imagen">
         <form method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
             {% csrf_token %}
-            <input type="number" name="OTBO2101" id="OTBO2101" class="number-input4" placeholder="OT BO2101" step="any">
-            <input type="number" name="PRESIONBO2101" id="PRESIONBO2101" class="number-input2" placeholder="PRESION BO2101" step="any">
-            <input type="number" name="PRESIONINIC2101" id="PRESIONINIC2101" class="number-input2" placeholder="PRESION IN IC2101" step="any">
-            <input type="number" name="PRESIONOUTIC2101" id="PRESIONOUTIC2101" class="number-input2" placeholder="PRESION OUT IC2101" step="any">
-            <input type="number" name="PRESIONOUTIC2103" id="PRESIONOUTIC2103" class="number-input2" placeholder="PRESION OUT IC2103" step="any">
-            <input type="number" name="PRESIONINIC2104" id="PRESIONINIC2104" class="number-input2" placeholder="PRESION IN IC2104" step="any">
-            <input type="number" name="PRESIONOUTIC2104" id="PRESIONOUTIC2104" class="number-input2" placeholder="PRESION OUT IC2104" step="any">
-            
-            <input type="text" name="OBS" id="OBS" class="number-input5" placeholder="Observaciones">
+            <input type="number" name="OT_BO2101" id="OT_BO2101" class="number-input4" placeholder="OT BO2101" step="any">
+            <input type="number" name="presion_salida_IC2102" id="presion_salida_IC2102" class="number-input2" placeholder="Presion Egreso IC2102" step="any">
+            <input type="number" name="presion_BO2101" id="presion_BO2101" class="number-input2" placeholder="Presion BO2101" step="any">
+            <input type="number" name="presion_ingreso_IC2101" id="presion_ingreso_IC2101" class="number-input2" placeholder="Presion Ingreso IC2101" step="any">
+            <input type="number" name="presion_egreso_IC2101_ingreso_IC2103" id="presion_egreso_IC2101_ingreso_IC2103" class="number-input2" placeholder="Presion Egreso IC2101/Ingreso IC2103" step="any">
+            <input type="number" name="presion_egreso_IC2103" id="presion_egreso_IC2103" class="number-input2" placeholder="Presion Egreso IC2103" step="any"> 
+            {% comment %} PRESION IN IC2104 {% endcomment %}
+            <input type="text" name="observaciones" id="observaciones" class="number-input5" placeholder="Observaciones">
             <button type="button" class="exit-button" onclick="window.location.href='{% url 'home' %}'">Salir</button>
-            <button type="submit">Guardar Datos</button>
+            <button type="submit" class="save-button">Guardar Datos</button>
         </form>
     </div>
     <!--(SEGUN EL HORARIO EL SECTOR DE EVAPORACION CARGA O NO CIERTOS DATOS DE UNA MISMA PANTALLA)-->

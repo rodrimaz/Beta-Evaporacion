@@ -89,8 +89,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'sql_server.pyodbc',
-        'NAME': 'TEST',
+        'ENGINE': 'mssql',
+        'NAME': 'TEST_2',
         'USER': 'sa',
         'PASSWORD': 'bioetanol4$',
         'HOST': 'SA0001\SQLBIO4',  # Puede ser una dirección IP o un nombre de host

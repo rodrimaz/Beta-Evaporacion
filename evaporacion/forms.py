@@ -2,7 +2,7 @@ from .models import Evaporacion
 from django import forms
 
 #formulario para la edicion de la tabla de sql de evaporacion
-class evaporacionForm(forms.ModelForm):
+class EvaporacionForm(forms.ModelForm):
     class Meta:
         model = Evaporacion
         exclude = ['id', 'fecha', 'operario']

@@ -8,6 +8,7 @@ from django.http import HttpResponse
 import openpyxl
 from datetime import datetime
 from .models import Evaporacion
+from .forms import EvaporacionForm
 
 # Exportar lista a EXCEL
 def export_evaporaciones(request):
@@ -33,33 +34,38 @@ def export_evaporaciones(request):
     
     # inlcuir los titulos de las columnas
     headers = [
-        "ID", "Fecha", "Operario", "Caudal VL", "PT01_PT02", "PT03", "PT04", "PT05",
-        "ST Efecto 2 Salida", "Densidad", "Observaciones", "OT Eyector 1", "OT Eyector 2",
-        "Potencia SepEvap", "Totalizador Condensado", "Filetes FERM", "OT VVA Traspaso Ef1 a Ef3",
-        "Viscosidad", "Temperatura", "Densidad LAB", "Nivel TK Condensado", "OT BO2101",
-        "Presión BO2101", "Presión Ingreso IC2101", "Presión Egreso IC2101 Ingreso IC2103",
-        "Presión Egreso IC2103", "Presión Ingreso IC2104", "Presión Egreso IC2104",
-        "T Ingreso Agua IC701", "T Salida Agua IC701", "Presión Ingreso Agua IC701",
-        "Presión Salida Agua IC701", "Presión Salida Vahos IC701"
-    ]
+        "ID", 
+        "Fecha", 
+        "Operario",
+        'Totalizador condensado (m3)',
+        'OT BO2101 (%)',
+        'Presión de salida del IC2102',
+        'Presion BO2101',
+        'Presion Ingreso IC2101',
+        'Presion Egreso IC2101/Ingreso IC2103',
+        'Presion Egreso IC2103',
+        'Temp Ingreso Agua IC701 (°C)',
+        'Temp Salida Agua IC701 (°C)',
+        'Presión Ingreso Agua IC701 (bar)',
+        'Presión Salida Agua IC701 (bar)',
+        'Presión Salida Vahos IC701 (bar)',
+        'Observaciones']
     ws.append(headers)
-    
-    # se agregan los campos de la tabla de sql (modelo)
+
     for evaporacion in evaporaciones:
         ws.append([
             evaporacion.id, 
             evaporacion.fecha, 
             evaporacion.operario, 
             evaporacion.totalizador_condensado,
-            evaporacion.OT_BO2101, 
+            evaporacion.OT_BO2101,
+            evaporacion.presion_salida_IC2102,
             evaporacion.presion_BO2101, 
             evaporacion.presion_ingreso_IC2101,
             evaporacion.presion_egreso_IC2101_ingreso_IC2103, 
             evaporacion.presion_egreso_IC2103,
-            evaporacion.presion_ingreso_IC2104, 
-            evaporacion.presion_egreso_IC2104, 
-            evaporacion.T_ingreso_agua_IC701,
-            evaporacion.T_salida_agua_IC701, 
+            evaporacion.temp_ingreso_agua_IC701,
+            evaporacion.temp_salida_agua_IC701, 
             evaporacion.presion_ingreso_agua_IC701, 
             evaporacion.presion_salida_agua_IC701,
             evaporacion.presion_salida_vahos_IC701,
@@ -106,14 +112,13 @@ class EvaporacionUpdateView(UpdateView):
     fields = [
         'totalizador_condensado', 
         'OT_BO2101', 
-        'presion_BO2101', 
+        'presion_salida_IC2102'
+        'presion_BO2101',
         'presion_ingreso_IC2101', 
         'presion_egreso_IC2101_ingreso_IC2103', 
         'presion_egreso_IC2103', 
-        'presion_ingreso_IC2104', 
-        'presion_egreso_IC2104', 
-        'T_ingreso_agua_IC701', 
-        'T_salida_agua_IC701', 
+        'temp_ingreso_agua_IC701', 
+        'temp_salida_agua_IC701', 
         'presion_ingreso_agua_IC701', 
         'przesion_salida_agua_IC701', 
         'presion_salida_vahos_IC701',
@@ -132,79 +137,40 @@ class EvaporacionDeleteView(DeleteView):
 @login_required(login_url='signin')
 def evaporacion(request):
     if request.method == 'POST':
-        hora = timezone.now()
-        # Obtener los valores del formulario
-        PRESIONBO2101 = request.POST.get('PRESIONBO2101', 0)
-        PRESIONOUTIC2103  = request.POST.get('PRESIONOUTIC2103', 0)
-        PRESIONINIC2104 = request.POST.get('PRESIONINIC2104', 0)
-        PRESIONOUTIC2104 = request.POST.get('PRESIONOUTIC2104', 0)
-        PRESIONOUTIC2101 = request.POST.get('PRESIONOUTIC2101', 0)
-        PRESIONINIC2101 = request.POST.get('PRESIONINIC2101', 0)
-        OTBO2101 = request.POST.get('OTBO2101', 0)
-        OBS= request.POST.get('OBS', 0)
-        # Crear una instancia del modelo Evaporacion con los valores del formulario
-        evaporacion = Evaporacion(
-            operario=request.user.username,
-            totalizador_condensado=0,
-            OT_BO2101=float(OTBO2101),
-            presion_BO2101=float(PRESIONBO2101),
-            presion_ingreso_IC2101=float(PRESIONINIC2101),
-            presion_egreso_IC2101_ingreso_IC2103=float(PRESIONOUTIC2101),
-            presion_egreso_IC2103=float(PRESIONOUTIC2103),
-            presion_ingreso_IC2104=float(PRESIONINIC2104),
-            presion_egreso_IC2104=float(PRESIONOUTIC2104),
-            T_ingreso_agua_IC701=0,
-            T_salida_agua_IC701=0,
-            presion_ingreso_agua_IC701=0,
-            presion_salida_agua_IC701=0,
-            presion_salida_vahos_IC701=0,
-            observaciones=(OBS)
-        )
-
-        # Guardar la instancia en la base de datos
-        evaporacion.save()
-
-        # Redirigir a la página de éxito o a donde desees
-        return redirect('exito')
-
-    return render(request, 'evaporacion/evaporacion.html')  # Ajusta el nombre del template según tu estructura
+        form = EvaporacionForm(request.POST)
+        if form.is_valid():
+            evaporacion = Evaporacion(
+                operario=request.user.username,
+                OT_BO2101=float(form.cleaned_data['OT_BO2101']),
+                presion_salida_IC2102=float(form.cleaned_data['presion_salida_IC2102']),
+                presion_BO2101=float(form.cleaned_data['presion_BO2101']),
+                presion_ingreso_IC2101=float(form.cleaned_data['presion_ingreso_IC2101']),
+                presion_egreso_IC2101_ingreso_IC2103=float(form.cleaned_data['presion_egreso_IC2101_ingreso_IC2103']),
+                presion_egreso_IC2103=float( form.cleaned_data['presion_egreso_IC2103']),
+                observaciones=form.cleaned_data['observaciones']
+            )
+            evaporacion.save()
+            return redirect('exito')
+    return render(request, 'evaporacion/evaporacion.html')
 
 #Carga de datos (evaporacion)
 @login_required(login_url='signin')
 def evaporacionpar(request):
     if request.method == 'POST':
-        hora = timezone.now()
-        print(hora)
-        # Obtener los valores del formulario y los guarda en variables
-        TINGRESO = request.POST.get('TINGRESO', 0)
-        TEGRESO = request.POST.get('TEGRESO', 0)
-        PRESIONINGRESO = request.POST.get('PRESIONINGRESO', 0)
-        PRESIONSALIDA = request.POST.get('PRESIONSALIDA', 0)
-        PRESIONIC701 = request.POST.get('PRESIONIC701', 0)
-        # Crear una instancia del modelo Evaporacion con los valores del formulario, se le asigna a cada campo del modelo, su variable correspondiente
-        evaporacion = Evaporacion(
-            operario=request.user.username,
-            totalizador_condensado=0,
-            OT_BO2101=0,
-            presion_BO2101=0,
-            presion_ingreso_IC2101=0,
-            presion_egreso_IC2101_ingreso_IC2103=0,
-            presion_egreso_IC2103=0,
-            presion_ingreso_IC2104=0,
-            presion_egreso_IC2104=0,
-            T_ingreso_agua_IC701= float(TINGRESO),
-            T_salida_agua_IC701= float(TEGRESO),
-            presion_ingreso_agua_IC701= float(PRESIONINGRESO),
-            presion_salida_agua_IC701= float(PRESIONSALIDA),
-            presion_salida_vahos_IC701= float(PRESIONIC701),
-            observaciones=''
-        )
-
-        # Guardar la instancia en la base de datos
-        evaporacion.save()
-
-        # Redirigir a la página de éxito o a donde desees
-        return redirect('exito')
+        form = EvaporacionForm(request.POST)
+        if form.is_valid():
+            evaporacion_par = Evaporacion(
+                operario=request.user.username,
+                totalizador_condensado= float(form.cleaned_data['totalizador_condensado']),
+                temp_ingreso_agua_IC701= float(form.cleaned_data['temp_ingreso_agua_IC701']),
+                temp_salida_agua_IC701= float(form.cleaned_data['temp_salida_agua_IC701']),
+                presion_ingreso_agua_IC701= float(form.cleaned_data['presion_ingreso_agua_IC701']),
+                presion_salida_agua_IC701= float(form.cleaned_data['presion_salida_agua_IC701']),
+                presion_salida_vahos_IC701= float(form.cleaned_data['presion_salida_vahos_IC701']),
+                observaciones=form.cleaned_data['observaciones']
+            )
+            evaporacion_par.save()
+            return redirect('exito')
 
     return render(request, 'evaporacion/evaporacionpar.html')
 
