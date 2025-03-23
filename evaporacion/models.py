@@ -31,8 +31,8 @@ class Evaporacion(models.Model):
     temp_ingreso_agua_IC701 = models.FloatField(verbose_name='Temp Ingreso Agua IC701 (°C)', null=True, default=None, blank=True)
     temp_salida_agua_IC701 = models.FloatField(verbose_name='Temp Salida Agua IC701 (°C)', null=True, default=None, blank=True)
     presion_ingreso_agua_IC701 = models.FloatField(verbose_name='Presion Ingreso Agua IC701 (bar)', null=True, default=None, blank=True)
-    presion_salida_agua_IC701 = models.FloatField(verbose_name='Presión Salida Agua IC701 (bar)', null=True, default=None, blank=True)
-    presion_salida_vahos_IC701 = models.FloatField(verbose_name='Presión Salida Vahos IC701 (bar)', null=True, default=None, blank=True)
+    presion_salida_agua_IC701 = models.FloatField(verbose_name='Presion Salida Agua IC701 (bar)', null=True, default=None, blank=True)
+    presion_salida_vahos_IC701 = models.FloatField(verbose_name='Presion Salida Vahos IC701 (bar)', null=True, default=None, blank=True)
     observaciones = models.TextField(verbose_name='Observaciones', null=True, default=None, blank=True)
 
     class Meta:
@@ -42,7 +42,7 @@ class Evaporacion(models.Model):
         ordering = ['-operario', '-fecha']
     
     def get_absolute_url(self):
-        return reverse('evaporacion_detail', args=[str(self.id)])
+        return reverse('evaporaciones', args=[str(self.id)])
     
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)

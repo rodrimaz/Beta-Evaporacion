@@ -1,3 +1,6 @@
+/* =========================================================
+   General Styles
+========================================================= */
 #error-message-container {
     position: absolute;
     top: 50%;
@@ -10,166 +13,85 @@
     display: none;
 }
 
+/* =========================================================
+   Input Number Styles
+========================================================= */
 .image-container {
     position: relative;
     display: inline-block;
 }
 
-.number-input {
-    position: absolute;
-    border: 3px solid #216c2a; 
-    background-color: #e6f9e6; 
-    text-align: center;
-    width: 70px; 
-    height: 20px; 
-    font-size: 12px; 
-    padding: 3px; 
-    border-radius: 0,5px; 
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); 
-    color: #003366; 
-    font-weight: bold;
-    outline: none; 
-    transition: all 0.3s ease-in-out;
-}
-
-.number-input2 {
-    position: absolute;
-    border: 3px solid #216c2a; 
-    background-color: #e6f9e6; 
-    text-align: center;
-    width: 120px; 
-    height: 25px; 
-    font-size: 10px; 
-    padding: 3px; 
-    border-radius: 0,5px; 
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); 
-    color: #003366; 
-    font-weight: bold;
-    outline: none; 
-    transition: all 0.3s ease-in-out;
-}
-
-.number-input3 {
-    position: absolute;
-    border: 3px solid #216c2a; 
-    background-color: #e6f9e6; 
-    text-align: center;
-    width: 225px; 
-    height: 20px; 
-    font-size: 10px; 
-    padding: 3px; 
-    border-radius: 0,5px; 
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); 
-    color: #003366; 
-    font-weight: bold;
-    outline: none; 
-    transition: all 0.3s ease-in-out;
-}
-
-.number-input4 {
-    position: absolute;
-    border: 3px solid #216c2a; 
-    background-color: #e6f9e6; 
-    text-align: center;
-    width: 85px; 
-    height: 21px; 
-    font-size: 10px; 
-    padding: 3px; 
-    border-radius: 0,5px; 
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); 
-    color: #003366; 
-    font-weight: bold;
-    outline: none; 
-    transition: all 0.3s ease-in-out;
-}
-
-.number-input5 {
-    position: absolute;
-    border: 3px solid #216c2a; 
-    background-color: #e6f9e6; 
-    text-align: center;
-    width: 380px; 
-    height: 50px; 
-    font-size: 10px; 
-    padding: 3px; 
-    border-radius: 0,5px; 
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); 
-    color: #003366; 
-    font-weight: bold;
-    outline: none; 
-    transition: all 0.3s ease-in-out;
-}
-
-.number-input6 {
-    position: absolute;
-    border: 3px solid #216c2a;
-    background-color: #e6f9e6; 
-    text-align: center;
-    width: 112px; 
-    height: 35px; 
-    font-size: 10px; 
-    padding: 3px; 
-    border-radius: 0,3px; 
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); 
-    color: #003366; 
-    font-weight: bold;
-    outline: none; 
-    transition: all 0.3s ease-in-out;
-}
-
+.number-input,
+.number-input2,
+.number-input3,
+.number-input4,
+.number-input5,
+.number-input6,
 .number-input7 {
     position: absolute;
     border: 3px solid #216c2a; 
     background-color: #e6f9e6; 
     text-align: center;
-    width: 205px; 
-    height: 30px; 
     font-size: 10px; 
     padding: 3px; 
-    border-radius: 0,5px; 
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); 
     color: #003366; 
     font-weight: bold;
     outline: none; 
     transition: all 0.3s ease-in-out;
 }
+
+.number-input { width: 70px; height: 20px; }
+.number-input2 { width: 120px; height: 25px; }
+.number-input3 { width: 225px; height: 20px; }
+.number-input4 { width: 85px; height: 21px; }
+.number-input5 { width: 380px; height: 50px; }
+.number-input6 { width: 112px; height: 35px; }
+.number-input7 { width: 205px; height: 30px; }
 
 .number-input2:focus,
 .number-input3:focus,
 .number-input4:focus,
 .number-input5:focus,
 .number-input6:focus,
-.number-input7:focus{
+.number-input7:focus {
     border-color: #0d4d14; 
     background-color: #baf7ba; 
     box-shadow: 0px 0px 12px rgba(13, 77, 20, 0.8); 
     transform: scale(1.1); 
 }
 
+/* Hide number input spinner */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
-button.save-button {
+/* =========================================================
+   Button Styles
+========================================================= */
+button.save-button, button.exit-button {
     position: absolute;
-    border: 3px solid #216c2a; 
-    background: linear-gradient(to bottom, #4caf50, #2e7d32); 
     text-align: center;
-    width: 180px; /* Slightly wider */
+    width: 180px; 
     height: 50px;
     font-size: 16px;
     font-weight: bold;
     text-transform: uppercase;
     color: white;
     padding: 10px;
-    margin-top: -53px;
-    margin-left: 950px;
-    border-radius: 8px; /* Rounded corners */
+    border-radius: 8px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease-in-out;
     cursor: pointer;
+}
+
+button.save-button {
+    border: 3px solid #216c2a; 
+    background: linear-gradient(to bottom, #4caf50, #2e7d32); 
+    margin-top: -53px;
+    margin-left: 950px;
 }
 
 button.save-button:hover,
@@ -181,23 +103,10 @@ button.save-button:focus {
 }
 
 button.exit-button {
-    position: absolute;
     border: 3px solid #8b0000;
     background: linear-gradient(to bottom, #e53935, #b71c1c);
-    text-align: center;
-    width: 180px; /* Slightly wider */
-    height: 50px;
-    font-size: 16px;
-    font-weight: bold;
-    text-transform: uppercase; /* Stands out more */
-    color: white; /* White text for better readability */
-    padding: 10px;
     margin-top: -53px;
     margin-left: 1150px;
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease-in-out;
-    cursor: pointer;
 }
 
 button.exit-button:hover,
@@ -208,33 +117,121 @@ button.exit-button:focus {
     transform: scale(1.02);
 }
 
-/* Evaporacion Par*/
+/* =========================================================
+   Update View: Evaporación Form (Edit)
+========================================================= */
+/* .evaporacion-form-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.evaporacion-form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #003366;
+}
+
+.evaporacion-form-container form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.evaporacion-form-container .form-group {
+    width: 48%;
+    margin-bottom: 15px;
+}
+
+.evaporacion-form-container .form-group label {
+    font-weight: bold;
+    color: #216c2a;
+    margin-bottom: 5px;
+}
+
+.evaporacion-form-container input,
+.evaporacion-form-container select,
+.evaporacion-form-container textarea {
+    width: 100%;
+    padding: 8px;
+    border: 2px solid #216c2a;
+    border-radius: 5px;
+    background-color: #e6f9e6;
+    color: #003366;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
+
+.evaporacion-form-container input:focus,
+.evaporacion-form-container select:focus,
+.evaporacion-form-container textarea:focus {
+    border-color: #0d4d14;
+    background-color: #baf7ba;
+    box-shadow: 0px 0px 12px rgba(13, 77, 20, 0.8);
+    transform: scale(1.02);
+    outline: none;
+}
+
+.evaporacion-form-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.evaporacion-form-buttons .btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.evaporacion-form-buttons .btn-success {
+    background-color: #216c2a;
+    border-color: #216c2a;
+    color: white;
+}
+
+.evaporacion-form-buttons .btn-success:hover {
+    background-color: #0d4d14;
+    border-color: #0b3c10;
+}
+
+.evaporacion-form-buttons .btn-danger {
+    background-color: rgb(196, 38, 38);
+    border-color: rgb(150, 30, 30);
+    color: white;
+}
+
+.evaporacion-form-buttons .btn-danger:hover {
+    background-color: rgb(160, 30, 30);
+    border-color: rgb(130, 25, 25);
+} */
+
+/* =========================================================
+   Positioning for Inputs in Evaporación Form
+========================================================= */
+/* Evaporación Par */
 #temp_ingreso_agua_IC701 { top: 302px; left: 1198px; }
 #temp_salida_agua_IC701 { top: 302px; left: 1320px; }
 #presion_ingreso_agua_IC701 { top: 343px; left: 1198px; }
-#presion_salida_agua_IC701  { top: 343px; left: 1320px; }
+#presion_salida_agua_IC701 { top: 343px; left: 1320px; }
 #presion_salida_vahos_IC701 { top: 603px; left: 1212px; }
 #totalizador_condensado { top: 683px; left: 18px; }
-/* Evaporacion Par */
+
+/* Evaporación Par */
 #OT_BO2101 { top: 153px; left: 1185px; }
 #presion_BO2101 { top: 174px; left: 1185px; }
 #presion_egreso_IC2103 { top: 383px; left: 1080px; }
 #presion_salida_IC2102 { top: 383px; left: 1236px; }
 #presion_egreso_IC2101_ingreso_IC2103 { top: 495px; left: 966px; }
 #presion_ingreso_IC2101 { top: 524px; left: 1107px; }
+
 /* Ambos */
 #observaciones { top: 652px; left: 525px; }
-
-#PT05 { top: 74px; left: 54px; }
-#PT04 { top: 74px; left: 415px; }
-#PT03 { top: 74px; left: 725px; }
-#OTEYECTOR1 { top: 73px; left: 820px; }
-#PT01PT02 { top: 74px; left: 965px; }
-#OTEYECTOR2 { top: 32px; left: 820px; }
-#LCV01 { top: 371px; left: 800px; }
-#CAUDALVL { top: 335px; left: 808px; }
-#ST2EF { top: 240px; left: 643px; }
-#DENSIDAD { top: 380px; left: 495px; }
-#VISCOSIDAD { top: 382px; left: 356px; }
-#TEMPERATURA { top: 403px; left: 356px; }
-#DENSIDADLAB { top: 425px; left: 356px; }

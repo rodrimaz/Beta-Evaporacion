@@ -81,6 +81,7 @@ def export_evaporaciones(request):
 @method_decorator(login_required, name='dispatch')
 class EvaporacionListView(ListView):
     model = Evaporacion
+    paginate_by = 100
     template_name = 'evaporacion/evaporacion_list.html'
     context_object_name = 'evaporaciones'
     ordering = ['-fecha']
@@ -112,7 +113,7 @@ class EvaporacionUpdateView(UpdateView):
     fields = [
         'totalizador_condensado', 
         'OT_BO2101', 
-        'presion_salida_IC2102'
+        'presion_salida_IC2102',
         'presion_BO2101',
         'presion_ingreso_IC2101', 
         'presion_egreso_IC2101_ingreso_IC2103', 
@@ -120,7 +121,7 @@ class EvaporacionUpdateView(UpdateView):
         'temp_ingreso_agua_IC701', 
         'temp_salida_agua_IC701', 
         'presion_ingreso_agua_IC701', 
-        'przesion_salida_agua_IC701', 
+        'presion_salida_agua_IC701', 
         'presion_salida_vahos_IC701',
         'observaciones'
     ]
