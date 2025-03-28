@@ -12,20 +12,18 @@ from .forms import EvaporacionForm
 
 # Exportar lista a EXCEL
 def export_evaporaciones(request):
-    evaporaciones = Evaporacion.objects.all()
-    
+    evaporaciones = Evaporacion.objects
     start_date = request.GET.get('start_date')
     end_date = request.GET.get('end_date')
-
-    if start_date and end_date:
-        try:
-            # configuracion para que la DESCARGA filtrada por fechas sea desde-hasta (inclusives)
-            end_date_obj = datetime.strptime(end_date, '%Y-%m-%d')
-            end_date_obj = end_date_obj.replace(hour=23, minute=59, second=59)
-            evaporaciones = evaporaciones.filter(fecha__range=[start_date, end_date_obj])
-        except ValueError:
-            
-            pass
+    filename = "Evaporaciones"
+    if start_date:
+        evaporaciones = evaporaciones.filter(fecha__date__gte=start_date)
+        filename += "_from_" + start_date
+    if end_date:
+        evaporaciones = evaporaciones.filter(fecha__date__lte=end_date)
+        filename += "_to_" + end_date
+    
+    filename += ".xlsx"
 
     # Create an in-memory workbook and add a worksheet.
     wb = openpyxl.Workbook()
@@ -33,48 +31,13 @@ def export_evaporaciones(request):
     ws.title = "Evaporaciones"
     
     # inlcuir los titulos de las columnas
-    headers = [
-        "ID", 
-        "Fecha", 
-        "Operario",
-        'Totalizador condensado (m3)',
-        'OT BO2101 (%)',
-        'Presión de salida del IC2102',
-        'Presion BO2101',
-        'Presion Ingreso IC2101',
-        'Presion Egreso IC2101/Ingreso IC2103',
-        'Presion Egreso IC2103',
-        'Temp Ingreso Agua IC701 (°C)',
-        'Temp Salida Agua IC701 (°C)',
-        'Presión Ingreso Agua IC701 (bar)',
-        'Presión Salida Agua IC701 (bar)',
-        'Presión Salida Vahos IC701 (bar)',
-        'Observaciones']
+    headers = [field.verbose_name for field in Evaporacion._meta.get_fields()]  
     ws.append(headers)
+    for evaporacion in evaporaciones.values():
+        ws.append(list(evaporacion.values()))
 
-    for evaporacion in evaporaciones:
-        ws.append([
-            evaporacion.id, 
-            evaporacion.fecha, 
-            evaporacion.operario, 
-            evaporacion.totalizador_condensado,
-            evaporacion.OT_BO2101,
-            evaporacion.presion_salida_IC2102,
-            evaporacion.presion_BO2101, 
-            evaporacion.presion_ingreso_IC2101,
-            evaporacion.presion_egreso_IC2101_ingreso_IC2103, 
-            evaporacion.presion_egreso_IC2103,
-            evaporacion.temp_ingreso_agua_IC701,
-            evaporacion.temp_salida_agua_IC701, 
-            evaporacion.presion_ingreso_agua_IC701, 
-            evaporacion.presion_salida_agua_IC701,
-            evaporacion.presion_salida_vahos_IC701,
-            evaporacion.observaciones
-        ])
-    
-    # Create an HTTP response with the Excel file.
     response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-    response['Content-Disposition'] = 'attachment; filename=evaporaciones.xlsx'
+    response['Content-Disposition'] = f'attachment; filename={filename}'
     wb.save(response)
     return response
 
@@ -84,18 +47,17 @@ class EvaporacionListView(ListView):
     paginate_by = 100
     template_name = 'evaporacion/evaporacion_list.html'
     context_object_name = 'evaporaciones'
-    ordering = ['-fecha']
-
+    ordering = ['-operario', '-fecha']
+    
     def get_queryset(self):
         queryset = super().get_queryset()
         start_date = self.request.GET.get('start_date')
         end_date = self.request.GET.get('end_date')
-        
-        if start_date and end_date:
-            # configuracion para que la busqueda por fechas sea desde-hasta (inclusives)
-            end_date = timezone.datetime.strptime(end_date, '%Y-%m-%d')
-            end_date = end_date.replace(hour=23, minute=59, second=59)
-            queryset = queryset.filter(fecha__range=[start_date, end_date])
+
+        if start_date:
+            queryset = queryset.filter(fecha__date__gte=start_date)
+        if end_date:
+            queryset = queryset.filter(fecha__date__lte=end_date)
         
         return queryset
 
@@ -103,6 +65,8 @@ class EvaporacionListView(ListView):
         context = super().get_context_data(**kwargs)
         context['start_date'] = self.request.GET.get('start_date')
         context['end_date'] = self.request.GET.get('end_date')
+        context['display'] = 'none' if not context['start_date'] and not context['end_date'] else 'block'
+        context['headers'] = [field.verbose_name for field in Evaporacion._meta.get_fields()] + ['Acciones']
         return context
     
 #Edicion de tabla evaporacion de la base de datos

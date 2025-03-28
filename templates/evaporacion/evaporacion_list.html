@@ -2,87 +2,87 @@
 {% block content %}
 {% load static %}
 
-<h1 class="text-center mb-4">Tabla de Evaporación</h1>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'evaporacion/css/style.css' %}">
+        <title>Tabla Evaporacion</title>
+    </head>
+    <body>
+        <h1 class="text-center mb-4">Tabla de Evaporación</h1>
+        <div class="container-fluid">
+            <div class="row align-items-center mb-4">
+                <div class="col-md-8">
+                    <form method="GET" class="d-flex align-items-center gap-2">
+                        <label for="start_date" class="fw-bold">Desde:</label>
+                        <input type="date" id="start_date" name="start_date" class="form-control" value="{{ start_date }}">
+                        
+                        <label for="end_date" class="fw-bold ms-3">Hasta:</label>
+                        <input type="date" id="end_date" name="end_date" class="form-control" value="{{ end_date }}">
 
-<div class="container-fluid">
-    <!-- Filter & Export Section -->
-    <div class="row align-items-center mb-4">
-        <div class="col-md-8">
-            <form method="GET" class="d-flex align-items-center gap-2">
-                <label for="start_date" class="fw-bold">Desde:</label>
-                <input type="date" id="start_date" name="start_date" class="form-control" value="{{ start_date }}">
-                
-                <label for="end_date" class="fw-bold ms-3">Hasta:</label>
-                <input type="date" id="end_date" name="end_date" class="form-control" value="{{ end_date }}">
+                        <button type="submit" class="btn btn-primary ms-3" id="filter_table" onclick="filterTable();">
+                            <i class="fas fa-filter"></i> Filtrar
+                        </button>
 
-                <button type="submit" class="btn btn-primary ms-3">
-                    <i class="fas fa-filter"></i> Filtrar
-                </button>
-            </form>
+                        <button type="submit" class="btn btn-primary ms-3" id="remove_filter" onclick="unfilterTable();" style='display:{{ display }}'>
+                            <i class="fas fa-filter"></i> Quitar
+                        </button>
+                    </form>
+                </div>
+                <div class="col-md-4 text-end">
+                    <a href="{% url 'export_evaporaciones' %}?start_date={{ start_date }}&end_date={{ end_date }}" class="btn btn-success">
+                        <i class="fas fa-file-excel"></i> Exportar a Excel
+                    </a>
+                </div>
+            </div>
+            <!-- Table Section -->
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-bordered w-100" style="table-layout: auto;">
+                    <thead class="table-dark">
+                        <tr>
+                            {% for header in headers %}
+                                <th>{{ header }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for evaporacion in evaporaciones %}
+                            <tr>
+                                <td>{{ evaporacion.id }}</td>
+                                <td>{{ evaporacion.fecha|date:"d/m/Y" }}</td> <!-- Date formatted as dd/mm/yyyy -->
+                                <td>{{ evaporacion.operario }}</td>
+                                <td>{{ evaporacion.totalizador_condensado }}</td>
+                                <td>{{ evaporacion.OT_BO2101 }}</td>
+                                <td>{{ evaporacion.presion_salida_IC2102 }}</td>
+                                <td>{{ evaporacion.presion_BO2101 }}</td>
+                                <td>{{ evaporacion.presion_ingreso_IC2101 }}</td>
+                                <td>{{ evaporacion.presion_egreso_IC2101_ingreso_IC2103 }}</td>
+                                <td>{{ evaporacion.presion_egreso_IC2103 }}</td>
+                                <td>{{ evaporacion.temp_ingreso_agua_IC701 }}</td>
+                                <td>{{ evaporacion.temp_salida_agua_IC701 }}</td>
+                                <td>{{ evaporacion.presion_ingreso_agua_IC701 }}</td>
+                                <td>{{ evaporacion.presion_salida_agua_IC701 }}</td>
+                                <td>{{ evaporacion.presion_salida_vahos_IC701 }}</td>
+                                <td>{{ evaporacion.observaciones }}</td>
+                                <td class="d-flex gap-2">
+                                    <a href="{% url 'evaporacion_edit' evaporacion.pk %}" class="btn btn-sm btn-warning">
+                                        <i class="fas fa-edit"></i> Editar
+                                    </a>
+                                    <a href="{% url 'evaporacion_delete' evaporacion.pk %}" class="btn btn-sm btn-danger">
+                                        <i class="fas fa-trash-alt"></i> Eliminar
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="col-md-4 text-end">
-            <a href="{% url 'export_evaporaciones' %}?start_date={{ start_date }}&end_date={{ end_date }}" class="btn btn-success">
-                <i class="fas fa-file-excel"></i> Exportar a Excel
-            </a>
-        </div>
-    </div>
-
-    <!-- Table Section -->
-    <div class="table-responsive">
-        <table class="table table-striped table-hover table-bordered w-100" style="table-layout: auto;">
-            <thead class="table-dark">
-                <tr>
-                    <th>ID</th>
-                    <th>Fecha</th>
-                    <th>Operario</th>
-                    <th>Totalizador condensado (m3)</th>
-                    <th>OT BO2101 (%)</th>
-                    <th>Presión Egreso IC2102</th>
-                    <th>Presión BO2101</th>
-                    <th>Presión Ingreso IC2101</th>
-                    <th>Presión Egreso IC2101/Ingreso IC2103</th>
-                    <th>Presión Egreso IC2103</th>
-                    <th>Temp Ingreso Agua IC701 (°C)</th>
-                    <th>Temp Salida Agua IC701 (°C)</th>
-                    <th>Presión Ingreso Agua IC701 (bar)</th>
-                    <th>Presión Salida Agua IC701 (bar)</th>
-                    <th>Presión Salida Vahos IC701 (bar)</th>
-                    <th>Observaciones</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for evaporacion in evaporaciones %}
-                <tr>
-                    <td>{{ evaporacion.id }}</td>
-                    <td>{{ evaporacion.fecha|date:"d/m/Y" }}</td> <!-- Date formatted as dd/mm/yyyy -->
-                    <td>{{ evaporacion.operario }}</td>
-                    <td>{{ evaporacion.totalizador_condensado }}</td>
-                    <td>{{ evaporacion.OT_BO2101 }}</td>
-                    <td>{{ evaporacion.presion_salida_IC2102 }}</td>
-                    <td>{{ evaporacion.presion_BO2101 }}</td>
-                    <td>{{ evaporacion.presion_ingreso_IC2101 }}</td>
-                    <td>{{ evaporacion.presion_egreso_IC2101_ingreso_IC2103 }}</td>
-                    <td>{{ evaporacion.presion_egreso_IC2103 }}</td>
-                    <td>{{ evaporacion.temp_ingreso_agua_IC701 }}</td>
-                    <td>{{ evaporacion.temp_salida_agua_IC701 }}</td>
-                    <td>{{ evaporacion.presion_ingreso_agua_IC701 }}</td>
-                    <td>{{ evaporacion.presion_salida_agua_IC701 }}</td>
-                    <td>{{ evaporacion.presion_salida_vahos_IC701 }}</td>
-                    <td>{{ evaporacion.observaciones }}</td>
-                    <td class="d-flex gap-2">
-                        <a href="{% url 'evaporacion_edit' evaporacion.pk %}" class="btn btn-sm btn-warning">
-                            <i class="fas fa-edit"></i> Editar
-                        </a>
-                        <a href="{% url 'evaporacion_delete' evaporacion.pk %}" class="btn btn-sm btn-danger">
-                            <i class="fas fa-trash-alt"></i> Eliminar
-                        </a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-</div>
-
+    </body>
+</html>
+<script>
+    document.getElementById('remove_filter').onclick = function() {
+        document.getElementById('start_date').value = '';
+        document.getElementById('end_date').value = '';
+    }
+</script>
 {% endblock %}

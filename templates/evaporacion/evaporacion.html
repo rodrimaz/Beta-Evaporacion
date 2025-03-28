@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="image-container">
-        <img src="{% static 'images/evaporacion.png' %}" alt="Imagen">
+        <img src="{% static 'evaporacion/images/evaporacion.png' %}" alt="Imagen">
         <form method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
             {% csrf_token %}
             <input type="number" name="OT_BO2101" id="OT_BO2101" class="number-input4" placeholder="OT BO2101" step="any">
@@ -92,15 +92,6 @@
         });
     </script>
     
-    
-    
-    
-    
-    
 </body>
 </html>
 {% endblock %}
-    
-    
-    
-    
