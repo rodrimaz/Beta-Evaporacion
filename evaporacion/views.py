@@ -22,15 +22,12 @@ def export_evaporaciones(request):
     if end_date:
         evaporaciones = evaporaciones.filter(fecha__date__lte=end_date)
         filename += "_to_" + end_date
-    
     filename += ".xlsx"
 
-    # Create an in-memory workbook and add a worksheet.
     wb = openpyxl.Workbook()
     ws = wb.active
     ws.title = "Evaporaciones"
     
-    # inlcuir los titulos de las columnas
     headers = [field.verbose_name for field in Evaporacion._meta.get_fields()]  
     ws.append(headers)
     for evaporacion in evaporaciones.values():
@@ -91,11 +88,10 @@ class EvaporacionUpdateView(UpdateView):
     ]
     success_url = reverse_lazy('evaporacion_list')
 
-# Eliminar campo de la tabla de evaporacion de la base de datos
 @method_decorator(login_required, name='dispatch')
 class EvaporacionDeleteView(DeleteView):
     model = Evaporacion
-    template_name = 'evaporacion/confirm_delete.html' #Utilizable para cualquier eliminar (no depende del tipo de tabla)
+    template_name = 'evaporacion/confirm_delete.html'
     success_url = reverse_lazy('evaporacion_list')
 
 #Carga de datos (evaporacion)
