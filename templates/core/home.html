@@ -7,97 +7,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'core/css/style.css' %}">
     <title>Centro de carga de datos</title>
-    <style>
-        body {
-            text-align: center;
-        }
-
-        h1 {
-            margin-top: 50px;
-        }
-
-        img {
-            margin-top: 20px;
-            max-width: 100%;
-            height: auto;
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        li {
-            display: inline-block;
-            margin-top: 20px;
-        }
-    </style>
 </head>
 <body>
     <h1>Centro de carga de datos</h1>
-    <img src="{% static 'images/logo.PNG' %}" alt="Logo">
+    <img src="{% static 'core/imgs/logo.PNG' %}" alt="Logo">
     {% if not user.is_authenticated %}
-
-    <div class="d-grid gap-2 col-6 mx-auto">  
-        <a class="btn btn-outline-dark" href="{% url 'signin' %}" role="button">Iniciar Sesión</a>
-    <div>
-        <!--<ul>
-            <li><a href="{% url 'signin' %}">Iniciar Sesión</a></li>
-        </ul>-->
-    
-    {% else %}
-    {% comment %} <div class="buttons-container d-flex justify-content-center mt-4 gap-2">
-        <!-- Botón 1 -->
-        <div class="btn-group dropright">
-            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                Carga de Datos
-            </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{% url 'evaporacion' %}">Evaporación</a></li>
-                <li><a class="dropdown-item" href="{% url 'evaporacionpar' %}">Evaporación Par</a></li>
-            </ul>
+        <div class="d-grid gap-2 col-6 mx-auto">  
+            <a class="btn btn-outline-dark" href="{% url 'signin' %}" role="button">Iniciar Sesión</a>
         </div>
-        <!-- Botón 2 -->
-        <div class="btn-group dropright">
-            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                Reporte Fallas
-            </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{% url 'fallas_lista' %}">Fallas</a></li>
-                <li><a class="dropdown-item" href="#">Fallas BG</a></li>
-            </ul>
-        </div>
-        <!-- Botón 3 -->
-        <div class="btn-group dropright">
-            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                Programadores
-            </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Programador ANH</a></li>
-                <li><a class="dropdown-item" href="#">Programador Caldera</a></li>
-                <li><a class="dropdown-item" href="#">Programador DEST</a></li>
-                <li><a class="dropdown-item" href="#">Programador ISLA</a></li>
-                <li><a class="dropdown-item" href="#">Programador LAB</a></li>
-                <li><a class="dropdown-item" href="#">Programador MLF</a></li>
-                <li><a class="dropdown-item" href="#">Programador SEC</a></li>
-                <li><a class="dropdown-item" href="#">Programador SEPEVAP</a></li>
-            </ul>
-        </div>
-        <!-- Botón 4 -->
-        <div class="btn-group dropright">
-            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                Botón 4
-            </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Opción 4.1</a></li>
-                <li><a class="dropdown-item" href="#">Opción 4.2</a></li>
-                <li><a class="dropdown-item" href="#">Opción 4.3</a></li>
-            </ul>
-        </div>
-    </div> {% endcomment %}
     {% endif %}
-    <img src="https://www.bio4.com.ar/wp-content/uploads/2016/11/slider-2.jpg" />
+    <img src="{% static 'core/imgs/PlantaBio4.jpg' %}" style="max-width: 100%; height: auto;"/>
 </body>
 </html>
 {% endblock %}
